@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="de" data-basis="" data-seite="start">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos;; script-src &apos;self&apos; &apos;wasm-unsafe-eval&apos;; style-src &apos;self&apos;; img-src &apos;self&apos; data: blob:; font-src &apos;self&apos;; connect-src &apos;self&apos;; frame-src https://www.openstreetmap.org; worker-src &apos;self&apos; blob:; object-src &apos;none&apos;; base-uri &apos;none&apos;; form-action &apos;self&apos;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Fahrradwerkstatt in Peine – Inspektion, Bremsen, E-Bike | Radhaus Fuhse</title>
+<meta name="description" content="Fahrradwerkstatt in Peine: Inspektion, Bremsen-Service, E-Bike-Diagnose und Laufradzentrierung. Termin online anfragen und den Stand der Reparatur per Link verfolgen.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://radhaus-fuhse.example/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Radhaus Fuhse">
+<meta property="og:title" content="Fahrradwerkstatt in Peine – Inspektion, Bremsen, E-Bike | Radhaus Fuhse">
+<meta property="og:description" content="Fahrradwerkstatt in Peine: Inspektion, Bremsen-Service, E-Bike-Diagnose und Laufradzentrierung. Termin online anfragen und den Stand der Reparatur per Link verfolgen.">
+<meta property="og:url" content="https://radhaus-fuhse.example/">
+<meta property="og:image" content="https://radhaus-fuhse.example/assets/bilder/vorschau-1200.jpg">
+<meta name="theme-color" content="#0e4a4c">
+<link rel="icon" href="assets/bilder/zeichen.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-sc-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/basis.css">
+<link rel="stylesheet" href="assets/css/seite.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BicycleStore","name":"Radhaus Fuhse","description":"Fahrradwerkstatt für Inspektion, Bremsen, Laufräder und E-Bikes. Musterseite, der Betrieb ist erfunden.","url":"https://radhaus-fuhse.example/","telephone":"+49 30 23125 417","email":"werkstatt@radhaus-fuhse.example","image":"https://radhaus-fuhse.example/assets/bilder/vorschau-1200.jpg","priceRange":"15 € – 139 €","currenciesAccepted":"EUR","paymentAccepted":"Bargeld, Girocard, Kreditkarte","address":{"@type":"PostalAddress","streetAddress":"Speichenweg 7","postalCode":"31224","addressLocality":"Peine","addressRegion":"Niedersachsen","addressCountry":"DE"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}],"potentialAction":{"@type":"ReserveAction","target":"https://radhaus-fuhse.example/termin/","name":"Termin anfragen"}}</script>
+
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt</a>
+<aside class="muster" aria-label="Hinweis zur Musterseite"><p>Musterseite: Diesen Betrieb gibt es nicht. Gebaut von <a href="https://joermy.github.io/">Joermy</a>.</p></aside>
+<header class="kopf">
+  <div class="breite kopf__innen">
+    <a class="marke" href="">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="10" fill="#0e4a4c"/><path d="M12 30 32 12l20 18v22H12z" fill="none" stroke="#f7f8f6" stroke-width="4" stroke-linejoin="round"/><circle cx="32" cy="38" r="9.5" fill="none" stroke="#f2c230" stroke-width="3.5"/><path d="M32 28.5v19M23.8 33.2l16.4 9.6M23.8 42.8l16.4-9.6" stroke="#f2c230" stroke-width="1.8"/></svg>
+      <span><span class="marke__name">Radhaus Fuhse</span><span class="marke__ort">Fahrradwerkstatt in Peine</span></span>
+    </a>
+    <button class="menueknopf" type="button" aria-expanded="false" aria-controls="hauptnav" data-menue><span class="unsichtbar">Menü</span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <nav class="hauptnav" id="hauptnav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="leistungen/">Leistungen und Preise</a></li>
+        <li><a href="termin/">Termin</a></li>
+        <li><a href="status/">Reparaturstatus</a></li>
+        <li><a href="kontakt/">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="knopf kopf__termin" href="termin/">Termin anfragen</a>
+  </div>
+</header>
+<main id="inhalt">
+<section class="werkstatt" id="werkstatt" data-werkstatt aria-label="So läuft eine Inspektion ab">
+  <div class="werkstatt__buehne">
+    <canvas class="werkstatt__leinwand" aria-hidden="true"></canvas>
+    <img class="werkstatt__standbild" src="assets/bilder/werkstatt-1600.webp" srcset="assets/bilder/werkstatt-800.webp 800w, assets/bilder/werkstatt-1600.webp 1600w" sizes="100vw" width="1600" height="1000" alt="E-Bike im Montageständer in einer Werkstatt bei Nacht, petrolfarbener Rahmen, goldene Federgabel, Reifen mit hellen Flanken" data-standbild hidden>
+    <div class="werkstatt__laden" data-laden>
+      <div class="balken"><span data-laden-balken></span></div>
+      <p>Werkstatt wird eingerichtet …</p>
+    </div>
+    <div class="werkstatt__befunde" data-befunde aria-hidden="true"></div>
+    <div class="werkstatt__anzeige" data-anzeige aria-hidden="true">
+      <div class="wert wert--antrieb"><b data-feld="gang">7 / 12</b><span>Gang</span></div>
+      <div class="wert wert--antrieb"><b data-feld="ritzel">38 : 24</b><span>Kettenblatt : Ritzel</span></div>
+      <div class="wert wert--bremse"><b data-feld="temperatur">24 °C</b><span>Bremsscheibe</span></div>
+      <div class="wert wert--bremse"><b data-feld="drehzahl">0 U/min</b><span>Laufrad</span></div>
+      <div class="wert wert--laufrad"><b data-feld="schlag">3,2 mm</b><span>Seitenschlag</span></div>
+      <div class="wert wert--laufrad"><b data-feld="spannung">± 18 %</b><span>Speichenspannung</span></div>
+    </div>
+    <div class="werkstatt__teile" data-teile hidden>
+      <p>Bauteil antippen oder hier wählen:</p>
+      <button class="teilknopf" type="button" data-teil-knopf="bremsscheibe_v">Bremse</button>
+      <button class="teilknopf" type="button" data-teil-knopf="kette">Kette</button>
+      <button class="teilknopf" type="button" data-teil-knopf="schaltwerk_kaefig">Schaltung</button>
+      <button class="teilknopf" type="button" data-teil-knopf="akku">Akku</button>
+      <button class="teilknopf" type="button" data-teil-knopf="speichen_h">Laufrad</button>
+      <button class="teilknopf" type="button" data-teil-knopf="reifen_v">Reifen</button>
+      <button class="teilknopf" type="button" data-teil-knopf="gabel">Federgabel</button>
+    </div>
+    <div class="teilkarte" data-teil-karte role="dialog" aria-modal="false" aria-labelledby="teilkarte-titel" hidden>
+      <button class="teilkarte__zu" type="button" data-karte-zu aria-label="Schließen">×</button>
+      <p class="teilkarte__teil" data-karte-teil>Bauteil</p>
+      <h3 id="teilkarte-titel" data-karte-titel>Leistung</h3>
+      <p class="teilkarte__preis" data-karte-preis></p>
+      <p data-karte-text></p>
+      <a class="knopf" href="termin/" data-karte-link>Termin dafür anfragen</a>
+    </div>
+  </div>
+
+  <div class="werkstatt__kapitel" data-kapitel-liste>
+    <article class="kapitel kapitel--start" data-kapitel="0">
+      <div class="kapitel__text breite">
+        <h1>Fahrradwerkstatt in Peine</h1>
+        <p class="einleitung">Inspektion, Bremsen, E-Bike-Diagnose. Termin online anfragen und den Stand Ihrer Reparatur jederzeit über Ihren Link sehen.</p>
+        <div class="aktionen">
+          <a class="knopf knopf--hell" href="termin/">Termin anfragen</a>
+          <a class="knopf knopf--rand-hell" href="leistungen/">Preise ansehen</a>
+        </div>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="1">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 1 von 7</span>
+        <h2>Erst messen, dann schrauben</h2>
+        <p>Wir lesen den Fehlerspeicher aus, messen Kette, Bremsbeläge, Reifendruck und Speichenspannung. Die Werte bekommen Sie, bevor wir etwas tauschen.</p>
+      </div>
+    </article>
+    <article class="kapitel kapitel--rechts" data-kapitel="2">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 2 von 7</span>
+        <h2>Jedes Teil einzeln</h2>
+        <p>Laufräder, Antrieb, Bremsen und Akku kommen ab. So sehen wir Verschleiß, statt ihn zu schätzen, und reinigen, wo der Schmutz wirklich sitzt.</p>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="3">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 3 von 7</span>
+        <h2>Zwölf Gänge, sauber eingestellt</h2>
+        <p>Wir schalten jede Stufe unter Last und stellen nach, bis die Kette ohne Rasseln wechselt. Eine gelängte Kette tauschen wir, bevor sie die Kassette mitnimmt.</p>
+        <p class="preis">Kette und Kassette tauschen: 25,00 € Arbeitslohn · <a href="termin/?leistung=antrieb">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel kapitel--rechts" data-kapitel="4">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 4 von 7</span>
+        <h2>Bremsen, die zupacken</h2>
+        <p>Bremsflüssigkeit tauschen, Beläge messen, Druckpunkt einstellen. Danach bremsen wir auf dem Prüfstand, bis die Scheibe glüht, und prüfen, ob sie gerade bleibt.</p>
+        <p class="preis">Bremsen-Service: 39,00 € je Bremse · <a href="termin/?leistung=bremsen">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="5">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 5 von 7</span>
+        <h2>Rund läuft es erst ohne Schlag</h2>
+        <p>Die Farben zeigen die Spannung jeder Speiche. Wir gleichen sie an und richten die Felge, bis sie weniger als 0,3 mm zur Seite schlägt.</p>
+        <p class="preis">Laufrad zentrieren: 25,00 € je Laufrad · <a href="termin/?leistung=laufrad">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel kapitel--rechts" data-kapitel="6">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 6 von 7</span>
+        <h2>Akku und Motor im Blick</h2>
+        <p>Kapazitätstest, Software-Update, Steckverbindungen. Sie erfahren, wie viel Ihr Akku noch kann und ob sich ein neuer lohnt.</p>
+        <p class="preis">E-Bike-Inspektion: 139,00 € · <a href="termin/?leistung=e-bike-inspektion">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="7">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 7 von 7</span>
+        <h2>Abholbereit</h2>
+        <p>Probefahrt, Protokoll, Übergabe. Den Stand sehen Sie während der ganzen Reparatur über Ihren Link, und zusätzliche Arbeiten geben Sie dort selbst frei.</p>
+        <p><a class="knopf knopf--hell" href="termin/">Termin anfragen</a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="abschnitt" aria-labelledby="ablauf-titel">
+  <div class="breite">
+    <div class="abschnitt__kopf">
+      <h2 id="ablauf-titel">So kommen Sie zu Ihrem Termin</h2>
+      <p>Kein Konto, kein Passwort. Sie bekommen einen Link, über den Sie alles zu Ihrem Auftrag erledigen.</p>
+    </div>
+    <ol class="ablauf">
+      <li><h3>Anfragen</h3><p>Leistung und freie Annahmezeit wählen. Wir bestätigen den Termin per Mail.</p></li>
+      <li><h3>Bringen</h3><p>Sie bringen das Rad zur gewählten Zeit. Den Auftrag besprechen wir vor Ort.</p></li>
+      <li><h3>Verfolgen</h3><p>Über Ihren Link sehen Sie den Stand und geben Zusatzarbeiten frei oder lehnen sie ab.</p></li>
+      <li><h3>Abholen</h3><p>Sie bekommen Bescheid, sobald das Rad fertig ist. Bezahlt wird bei Abholung.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="abschnitt abschnitt--hell" aria-labelledby="preise-titel">
+  <div class="breite zwei">
+    <div>
+      <h2 id="preise-titel">Feste Preise für die häufigsten Arbeiten</h2>
+      <p>Alle Preise inklusive 19 % Umsatzsteuer. Ersatzteile kommen nach Absprache dazu; was über den genannten Umfang hinausgeht, machen wir erst nach Ihrer Freigabe.</p>
+      <p><a class="knopf knopf--leise" href="leistungen/">Alle Leistungen und Preise</a></p>
+    </div>
+    <div>
+      <table class="preistafel"><thead><tr><th scope="col">Leistung</th><th scope="col" class="preis">Preis</th></tr></thead><tbody><tr><th scope="row">Inspektion<small>Alle Schrauben, Lager, Züge, Bremsen und Schaltung durchgesehen und eingestellt.</small></th><td class="preis"><b>89,00 €</b><span>pauschal</span></td></tr><tr><th scope="row">E-Bike-Inspektion<small>Inspektion plus Diagnose von Motor, Akku und Display mit Software-Update.</small></th><td class="preis"><b>139,00 €</b><span>pauschal</span></td></tr><tr><th scope="row">Bremsen-Service<small>Hydraulische Scheibenbremse entlüften, Beläge prüfen, Druckpunkt einstellen.</small></th><td class="preis"><b>39,00 €</b><span>je Bremse</span></td></tr><tr><th scope="row">Schaltung einstellen<small>Schaltwerk und Zug einstellen, Schaltauge prüfen.</small></th><td class="preis"><b>19,00 €</b><span>pauschal</span></td></tr><tr><th scope="row">Kette und Kassette tauschen<small>Verschleiß messen, Kette und Kassette wechseln. Teile nach Absprache.</small></th><td class="preis"><b>25,00 €</b><span>Arbeitslohn</span></td></tr></tbody></table>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt abschnitt--petrol" aria-labelledby="daten-titel">
+  <div class="breite zwei">
+    <div>
+      <h2 id="daten-titel">Ihre Daten bleiben in der Werkstatt</h2>
+      <p>Für einen Termin brauchen wir Ihren Namen und Ihre E-Mail-Adresse, sonst nichts. Eine Telefonnummer ist freiwillig.</p>
+      <p><a href="datenschutz/">Datenschutzerklärung lesen</a></p>
+    </div>
+    <ul class="liste-ruhig">
+      <li>Namen, Adressen und Nachrichten liegen verschlüsselt in unserer Datenbank.</li>
+      <li>Ihre Daten herunterladen oder löschen können Sie selbst über Ihren Link.</li>
+      <li>Abgesagte Termine löschen wir nach 30 Tagen, abgeschlossene Aufträge nach Ende der Gewährleistung.</li>
+      <li>Keine Werbenetzwerke, keine Analysedienste, keine Besucherzählung.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="abschnitt" aria-labelledby="ort-titel">
+  <div class="breite zwei">
+    <div>
+      <h2 id="ort-titel">Werkstatt und Öffnungszeiten</h2>
+      <p>Speichenweg 7, 31224 Peine<br>Telefon <a href="tel:+493023125417">030 23125 417</a></p>
+      <dl class="zeiten">
+        <dt>Montag bis Freitag</dt><dd>8 bis 18 Uhr</dd>
+        <dt>Samstag</dt><dd>9 bis 13 Uhr</dd>
+        <dt>Sonntag und Feiertage</dt><dd>geschlossen</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>Annahme ohne Wartezeit</h3>
+      <p>Wer einen Termin hat, gibt sein Rad zur gewählten Zeit direkt in der Werkstatt ab. Ohne Termin nehmen wir Räder an, wenn Platz ist.</p>
+      <p><a class="knopf" href="termin/">Termin anfragen</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="fuss">
+  <div class="breite">
+    <div class="fuss__raster">
+      <div>
+        <h2>Radhaus Fuhse</h2>
+        <p>Speichenweg 7, 31224 Peine<br>Telefon <a href="tel:+493023125417">030 23125 417</a><br><a href="mailto:werkstatt@radhaus-fuhse.example">werkstatt@radhaus-fuhse.example</a></p>
+        <dl class="zeiten">
+          <dt>Mo bis Fr</dt><dd>8 bis 18 Uhr</dd>
+          <dt>Samstag</dt><dd>9 bis 13 Uhr</dd>
+        </dl>
+      </div>
+      <div>
+        <h2>Ihr Auftrag</h2>
+        <ul>
+          <li><a href="termin/">Termin anfragen</a></li>
+          <li><a href="status/">Reparaturstatus</a></li>
+          <li><a href="widerruf/">Vertrag widerrufen</a></li>
+          <li><a href="widerrufsbelehrung/">Widerrufsbelehrung</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Rechtliches</h2>
+        <ul>
+          <li><a href="impressum/">Impressum</a></li>
+          <li><a href="datenschutz/">Datenschutz</a></li>
+          <li><button class="linkknopf" type="button" data-einwilligung-oeffnen>Cookie-Einstellungen</button></li>
+          <li><a href="barrierefreiheit/">Barrierefreiheit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fuss__unten">
+      <p>© 2026 Radhaus Fuhse (erfunden). Alle Preise inklusive 19 % Umsatzsteuer.</p>
+      <p>Musterprojekt von <a href="https://joermy.github.io/">Joermy</a></p>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/js/seite.js"></script>
+<script type="module" src="assets/js/start.js"></script>
+
+</body>
+</html>

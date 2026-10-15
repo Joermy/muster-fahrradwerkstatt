@@ -1,0 +1,49 @@
+<header class="seitenkopf breite">
+  <h1>Vertrag widerrufen</h1>
+  <p>Hier widerrufen Sie Zusatzarbeiten, die Sie über Ihren Statuslink freigegeben haben. Sie bekommen sofort eine Eingangsbestätigung mit Datum und Uhrzeit per Mail.</p>
+</header>
+<section class="breite inhalt-text">
+  <p class="hervor">Der Reparaturauftrag, den Sie bei der Annahme in der Werkstatt erteilen, ist kein Fernabsatzvertrag; für ihn gibt es kein gesetzliches Widerrufsrecht. Ein Termin, den Sie nur angefragt haben, kostet nichts; absagen können Sie ihn über Ihren Statuslink. Einzelheiten stehen in der <a href="../widerrufsbelehrung/">Widerrufsbelehrung</a>.</p>
+  <noscript><p class="meldung">Das Formular braucht JavaScript. Sie können auch per Mail an {{email}} oder per Brief an {{strasse}}, {{ort}} widerrufen.</p></noscript>
+  <form method="post" class="karte" data-widerruf novalidate>
+    <div data-widerruf-schritt="1">
+      <div class="feld">
+        <label for="w-name">Ihr Name</label>
+        <input id="w-name" name="name" autocomplete="name" maxlength="80" aria-describedby="w-name-fehler">
+        <p class="fehlertext" id="w-name-fehler" data-fehler="name"></p>
+      </div>
+      <div class="feld">
+        <label for="w-nummer">Auftragsnummer</label>
+        <p class="hilfe" id="w-nummer-hilfe">Steht in Ihrer Bestätigungsmail, zum Beispiel RF-ABCD-EFGH.</p>
+        <input id="w-nummer" name="nummer" autocomplete="off" maxlength="20" aria-describedby="w-nummer-hilfe w-nummer-fehler">
+        <p class="fehlertext" id="w-nummer-fehler" data-fehler="nummer"></p>
+      </div>
+      <div class="feld">
+        <label for="w-email">E-Mail-Adresse für die Eingangsbestätigung</label>
+        <input id="w-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="w-email-fehler">
+        <p class="fehlertext" id="w-email-fehler" data-fehler="email"></p>
+      </div>
+      <div class="feld">
+        <label for="w-grund">Grund <span class="hilfe">(freiwillig, Sie müssen keinen angeben)</span></label>
+        <textarea id="w-grund" name="grund" maxlength="500"></textarea>
+      </div>
+      <p class="hilfe">Ihre Angaben nutzen wir nur, um den Widerruf zuzuordnen, zu bearbeiten und nachzuweisen. Wir bewahren sie drei Jahre auf. Mehr dazu in der <a href="{{basis}}datenschutz/#widerruf">Datenschutzerklärung</a>.</p>
+      <button class="knopf" type="button" data-widerruf-weiter>Vertrag widerrufen</button>
+    </div>
+    <div data-widerruf-schritt="2" hidden>
+      <h2>Widerruf bestätigen</h2>
+      <p>Mit Klick auf „Widerruf bestätigen“ geht diese Erklärung bei uns ein:</p>
+      <p class="hervor" data-widerruf-text></p>
+      <div class="meldung meldung--fehler" data-sendefehler role="alert" hidden></div>
+      <div class="formular-aktionen">
+        <button class="knopf knopf--leise" type="button" data-widerruf-zurueck>Angaben ändern</button>
+        <button class="knopf" type="submit">Widerruf bestätigen</button>
+      </div>
+    </div>
+  </form>
+  <div data-widerruf-erfolg hidden tabindex="-1">
+    <h2>Ihr Widerruf ist eingegangen</h2>
+    <p data-widerruf-eingang></p>
+    <p>Die Bestätigung mit Inhalt, Datum und Uhrzeit ist per Mail unterwegs. Wir prüfen den Widerruf und melden uns.</p>
+  </div>
+</section>

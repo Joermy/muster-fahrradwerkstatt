@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="de" data-basis="../" data-seite="widerruf">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos;; script-src &apos;self&apos; &apos;wasm-unsafe-eval&apos;; style-src &apos;self&apos;; img-src &apos;self&apos; data: blob:; font-src &apos;self&apos;; connect-src &apos;self&apos;; frame-src https://www.openstreetmap.org; worker-src &apos;self&apos; blob:; object-src &apos;none&apos;; base-uri &apos;none&apos;; form-action &apos;self&apos;">
+<meta name="referrer" content="no-referrer">
+<title>Vertrag widerrufen – Radhaus Fuhse</title>
+<meta name="description" content="Online-Widerruf für Zusatzaufträge, die Sie über die Website von Radhaus Fuhse erteilt haben. Sie erhalten sofort eine Eingangsbestätigung per Mail.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://radhaus-fuhse.example/widerruf/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Radhaus Fuhse">
+<meta property="og:title" content="Vertrag widerrufen – Radhaus Fuhse">
+<meta property="og:description" content="Online-Widerruf für Zusatzaufträge, die Sie über die Website von Radhaus Fuhse erteilt haben. Sie erhalten sofort eine Eingangsbestätigung per Mail.">
+<meta property="og:url" content="https://radhaus-fuhse.example/widerruf/">
+<meta property="og:image" content="https://radhaus-fuhse.example/assets/bilder/vorschau-1200.jpg">
+<meta name="theme-color" content="#0e4a4c">
+<link rel="icon" href="../assets/bilder/zeichen.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-sc-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/basis.css">
+<link rel="stylesheet" href="../assets/css/seite.css">
+
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt</a>
+<aside class="muster" aria-label="Hinweis zur Musterseite"><p>Musterseite: Diesen Betrieb gibt es nicht. Gebaut von <a href="https://joermy.github.io/">Joermy</a>.</p></aside>
+<header class="kopf">
+  <div class="breite kopf__innen">
+    <a class="marke" href="../">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="10" fill="#0e4a4c"/><path d="M12 30 32 12l20 18v22H12z" fill="none" stroke="#f7f8f6" stroke-width="4" stroke-linejoin="round"/><circle cx="32" cy="38" r="9.5" fill="none" stroke="#f2c230" stroke-width="3.5"/><path d="M32 28.5v19M23.8 33.2l16.4 9.6M23.8 42.8l16.4-9.6" stroke="#f2c230" stroke-width="1.8"/></svg>
+      <span><span class="marke__name">Radhaus Fuhse</span><span class="marke__ort">Fahrradwerkstatt in Peine</span></span>
+    </a>
+    <button class="menueknopf" type="button" aria-expanded="false" aria-controls="hauptnav" data-menue><span class="unsichtbar">Menü</span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <nav class="hauptnav" id="hauptnav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="../leistungen/">Leistungen und Preise</a></li>
+        <li><a href="../termin/">Termin</a></li>
+        <li><a href="../status/">Reparaturstatus</a></li>
+        <li><a href="../kontakt/">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="knopf kopf__termin" href="../termin/">Termin anfragen</a>
+  </div>
+</header>
+<main id="inhalt">
+<header class="seitenkopf breite">
+  <h1>Vertrag widerrufen</h1>
+  <p>Hier widerrufen Sie Zusatzarbeiten, die Sie über Ihren Statuslink freigegeben haben. Sie bekommen sofort eine Eingangsbestätigung mit Datum und Uhrzeit per Mail.</p>
+</header>
+<section class="breite inhalt-text">
+  <p class="hervor">Der Reparaturauftrag, den Sie bei der Annahme in der Werkstatt erteilen, ist kein Fernabsatzvertrag; für ihn gibt es kein gesetzliches Widerrufsrecht. Ein Termin, den Sie nur angefragt haben, kostet nichts; absagen können Sie ihn über Ihren Statuslink. Einzelheiten stehen in der <a href="../widerrufsbelehrung/">Widerrufsbelehrung</a>.</p>
+  <noscript><p class="meldung">Das Formular braucht JavaScript. Sie können auch per Mail an werkstatt@radhaus-fuhse.example oder per Brief an Speichenweg 7, 31224 Peine widerrufen.</p></noscript>
+  <form method="post" class="karte" data-widerruf novalidate>
+    <div data-widerruf-schritt="1">
+      <div class="feld">
+        <label for="w-name">Ihr Name</label>
+        <input id="w-name" name="name" autocomplete="name" maxlength="80" aria-describedby="w-name-fehler">
+        <p class="fehlertext" id="w-name-fehler" data-fehler="name"></p>
+      </div>
+      <div class="feld">
+        <label for="w-nummer">Auftragsnummer</label>
+        <p class="hilfe" id="w-nummer-hilfe">Steht in Ihrer Bestätigungsmail, zum Beispiel RF-ABCD-EFGH.</p>
+        <input id="w-nummer" name="nummer" autocomplete="off" maxlength="20" aria-describedby="w-nummer-hilfe w-nummer-fehler">
+        <p class="fehlertext" id="w-nummer-fehler" data-fehler="nummer"></p>
+      </div>
+      <div class="feld">
+        <label for="w-email">E-Mail-Adresse für die Eingangsbestätigung</label>
+        <input id="w-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="w-email-fehler">
+        <p class="fehlertext" id="w-email-fehler" data-fehler="email"></p>
+      </div>
+      <div class="feld">
+        <label for="w-grund">Grund <span class="hilfe">(freiwillig, Sie müssen keinen angeben)</span></label>
+        <textarea id="w-grund" name="grund" maxlength="500"></textarea>
+      </div>
+      <p class="hilfe">Ihre Angaben nutzen wir nur, um den Widerruf zuzuordnen, zu bearbeiten und nachzuweisen. Wir bewahren sie drei Jahre auf. Mehr dazu in der <a href="../datenschutz/#widerruf">Datenschutzerklärung</a>.</p>
+      <button class="knopf" type="button" data-widerruf-weiter>Vertrag widerrufen</button>
+    </div>
+    <div data-widerruf-schritt="2" hidden>
+      <h2>Widerruf bestätigen</h2>
+      <p>Mit Klick auf „Widerruf bestätigen“ geht diese Erklärung bei uns ein:</p>
+      <p class="hervor" data-widerruf-text></p>
+      <div class="meldung meldung--fehler" data-sendefehler role="alert" hidden></div>
+      <div class="formular-aktionen">
+        <button class="knopf knopf--leise" type="button" data-widerruf-zurueck>Angaben ändern</button>
+        <button class="knopf" type="submit">Widerruf bestätigen</button>
+      </div>
+    </div>
+  </form>
+  <div data-widerruf-erfolg hidden tabindex="-1">
+    <h2>Ihr Widerruf ist eingegangen</h2>
+    <p data-widerruf-eingang></p>
+    <p>Die Bestätigung mit Inhalt, Datum und Uhrzeit ist per Mail unterwegs. Wir prüfen den Widerruf und melden uns.</p>
+  </div>
+</section>
+
+</main>
+<footer class="fuss">
+  <div class="breite">
+    <div class="fuss__raster">
+      <div>
+        <h2>Radhaus Fuhse</h2>
+        <p>Speichenweg 7, 31224 Peine<br>Telefon <a href="tel:+493023125417">030 23125 417</a><br><a href="mailto:werkstatt@radhaus-fuhse.example">werkstatt@radhaus-fuhse.example</a></p>
+        <dl class="zeiten">
+          <dt>Mo bis Fr</dt><dd>8 bis 18 Uhr</dd>
+          <dt>Samstag</dt><dd>9 bis 13 Uhr</dd>
+        </dl>
+      </div>
+      <div>
+        <h2>Ihr Auftrag</h2>
+        <ul>
+          <li><a href="../termin/">Termin anfragen</a></li>
+          <li><a href="../status/">Reparaturstatus</a></li>
+          <li><a href="../widerruf/">Vertrag widerrufen</a></li>
+          <li><a href="../widerrufsbelehrung/">Widerrufsbelehrung</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Rechtliches</h2>
+        <ul>
+          <li><a href="../impressum/">Impressum</a></li>
+          <li><a href="../datenschutz/">Datenschutz</a></li>
+          <li><button class="linkknopf" type="button" data-einwilligung-oeffnen>Cookie-Einstellungen</button></li>
+          <li><a href="../barrierefreiheit/">Barrierefreiheit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fuss__unten">
+      <p>© 2026 Radhaus Fuhse (erfunden). Alle Preise inklusive 19 % Umsatzsteuer.</p>
+      <p>Musterprojekt von <a href="https://joermy.github.io/">Joermy</a></p>
+    </div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/seite.js"></script>
+<script type="module" src="../assets/js/widerruf.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+/var/*
+!/var/.gitkeep
+/.env
+/vendor/
+/node_modules/
+/werkzeuge/
+*.sqlite
+*.sqlite-*
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc

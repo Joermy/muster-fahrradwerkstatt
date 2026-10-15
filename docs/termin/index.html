@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de" data-basis="../" data-seite="termin">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos;; script-src &apos;self&apos; &apos;wasm-unsafe-eval&apos;; style-src &apos;self&apos;; img-src &apos;self&apos; data: blob:; font-src &apos;self&apos;; connect-src &apos;self&apos;; frame-src https://www.openstreetmap.org; worker-src &apos;self&apos; blob:; object-src &apos;none&apos;; base-uri &apos;none&apos;; form-action &apos;self&apos;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Termin anfragen – Radhaus Fuhse, Fahrradwerkstatt Peine</title>
+<meta name="description" content="Werkstatttermin in Peine online anfragen: Leistung wählen, freie Annahmezeit aussuchen, Bestätigung per Mail. Den Stand der Reparatur sehen Sie danach über Ihren persönlichen Link.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://joermy.github.io/muster-fahrradwerkstatt/termin/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Radhaus Fuhse">
+<meta property="og:title" content="Termin anfragen – Radhaus Fuhse, Fahrradwerkstatt Peine">
+<meta property="og:description" content="Werkstatttermin in Peine online anfragen: Leistung wählen, freie Annahmezeit aussuchen, Bestätigung per Mail. Den Stand der Reparatur sehen Sie danach über Ihren persönlichen Link.">
+<meta property="og:url" content="https://joermy.github.io/muster-fahrradwerkstatt/termin/">
+<meta property="og:image" content="https://joermy.github.io/muster-fahrradwerkstatt/assets/bilder/vorschau-1200.jpg">
+<meta name="theme-color" content="#0e4a4c">
+<link rel="icon" href="../assets/bilder/zeichen.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-sc-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/basis.css">
+<link rel="stylesheet" href="../assets/css/seite.css">
+
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt</a>
+<aside class="muster" aria-label="Hinweis zur Musterseite"><p>Musterseite: Diesen Betrieb gibt es nicht. Vorführmodus: Eingaben bleiben in diesem Browser-Tab und werden nirgendwohin gesendet. Gebaut von <a href="https://joermy.github.io/">Joermy</a>.</p></aside>
+<header class="kopf">
+  <div class="breite kopf__innen">
+    <a class="marke" href="../">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="10" fill="#0e4a4c"/><path d="M12 30 32 12l20 18v22H12z" fill="none" stroke="#f7f8f6" stroke-width="4" stroke-linejoin="round"/><circle cx="32" cy="38" r="9.5" fill="none" stroke="#f2c230" stroke-width="3.5"/><path d="M32 28.5v19M23.8 33.2l16.4 9.6M23.8 42.8l16.4-9.6" stroke="#f2c230" stroke-width="1.8"/></svg>
+      <span><span class="marke__name">Radhaus Fuhse</span><span class="marke__ort">Fahrradwerkstatt in Peine</span></span>
+    </a>
+    <button class="menueknopf" type="button" aria-expanded="false" aria-controls="hauptnav" data-menue><span class="unsichtbar">Menü</span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <nav class="hauptnav" id="hauptnav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="../leistungen/">Leistungen und Preise</a></li>
+        <li><a href="../termin/" aria-current="page">Termin</a></li>
+        <li><a href="../status/">Reparaturstatus</a></li>
+        <li><a href="../kontakt/">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="knopf kopf__termin" href="../termin/">Termin anfragen</a>
+  </div>
+</header>
+<main id="inhalt">
+<header class="seitenkopf breite">
+  <h1>Termin anfragen</h1>
+  <p>In drei Schritten zur Annahmezeit. Wir bestätigen den Termin per Mail, den Reparaturauftrag besprechen wir bei der Annahme in der Werkstatt.</p>
+</header>
+<section class="breite inhalt-text" aria-label="Terminanfrage">
+  <noscript><p class="meldung">Für die Terminanfrage braucht diese Seite JavaScript. Sie erreichen uns auch telefonisch unter 030 23125 417.</p></noscript>
+  <ol class="schritte" data-schritte>
+    <li data-schritt-anzeige="1" aria-current="step">1. Leistung</li>
+    <li data-schritt-anzeige="2">2. Termin</li>
+    <li data-schritt-anzeige="3">3. Kontakt</li>
+    <li data-schritt-anzeige="4">4. Prüfen</li>
+  </ol>
+  <form method="post" class="karte" data-termin novalidate>
+    <div data-schritt="1">
+      <fieldset class="auswahl" data-leistungen><legend>Was sollen wir machen?</legend></fieldset>
+      <fieldset class="auswahl" data-raeder><legend>Welches Rad bringen Sie?</legend></fieldset>
+      <p class="fehlertext" data-fehler="schritt1" role="alert"></p>
+    </div>
+    <div data-schritt="2" hidden>
+      <h2 class="unsichtbar">Termin wählen</h2>
+      <p>Annahmezeiten der nächsten vier Wochen. Durchgestrichene Zeiten sind vergeben.</p>
+      <div class="kalender" data-kalender aria-live="polite"></div>
+      <p class="fehlertext" data-fehler="termin" role="alert"></p>
+    </div>
+    <div data-schritt="3" hidden>
+      <div class="feld">
+        <label for="name">Ihr Name</label>
+        <input id="name" name="name" autocomplete="name" required maxlength="80" aria-describedby="name-fehler">
+        <p class="fehlertext" id="name-fehler" data-fehler="name"></p>
+      </div>
+      <div class="feld">
+        <label for="email">E-Mail-Adresse</label>
+        <p class="hilfe" id="email-hilfe">Dorthin schicken wir die Bestätigung und den Link zu Ihrem Auftrag.</p>
+        <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" aria-describedby="email-hilfe email-fehler">
+        <p class="fehlertext" id="email-fehler" data-fehler="email"></p>
+      </div>
+      <div class="feld">
+        <label for="telefon">Telefon <span class="hilfe">(freiwillig)</span></label>
+        <p class="hilfe" id="telefon-hilfe">Nur für Rückfragen, falls etwas am Rad unklar ist.</p>
+        <input id="telefon" name="telefon" type="tel" autocomplete="tel" maxlength="25" aria-describedby="telefon-hilfe telefon-fehler">
+        <p class="fehlertext" id="telefon-fehler" data-fehler="telefon"></p>
+      </div>
+      <div class="feld">
+        <label for="nachricht">Was sollen wir wissen? <span class="hilfe">(freiwillig)</span></label>
+        <textarea id="nachricht" name="nachricht" maxlength="1000" aria-describedby="nachricht-hilfe nachricht-fehler"></textarea>
+        <p class="hilfe" id="nachricht-hilfe">Zum Beispiel Geräusche, Fehlercodes im Display oder was zuletzt gemacht wurde. Bitte keine Gesundheitsangaben.</p>
+        <p class="fehlertext" id="nachricht-fehler" data-fehler="nachricht"></p>
+      </div>
+      <div class="lockfeld" aria-hidden="true">
+        <label for="firma">Firma (bitte leer lassen)</label>
+        <input id="firma" name="firma" tabindex="-1" autocomplete="off">
+      </div>
+    </div>
+    <div data-schritt="4" hidden>
+      <h2>Bitte prüfen</h2>
+      <dl class="zusammenfassung" data-zusammenfassung></dl>
+      <p class="hilfe">Ihre Angaben verwenden wir nur für diesen Termin und den Auftrag. Abgesagte Termine löschen wir nach 30 Tagen, abgeschlossene Aufträge nach Ende der Gewährleistung. Mehr dazu in der <a href="../datenschutz/#termin">Datenschutzerklärung</a>.</p>
+      <p class="hilfe">Die Anfrage ist noch kein Auftrag und kostet nichts.</p>
+      <div class="meldung meldung--fehler" data-sendefehler role="alert" hidden></div>
+    </div>
+    <div class="formular-aktionen">
+      <button class="knopf knopf--leise" type="button" data-zurueck hidden>Zurück</button>
+      <button class="knopf" type="button" data-weiter>Weiter</button>
+      <button class="knopf" type="submit" data-senden hidden>Termin anfragen</button>
+    </div>
+  </form>
+  <div data-erfolg hidden>
+    <div class="anhaenger" tabindex="-1" data-erfolg-fokus>
+      <p class="anhaenger__zeile">Ihre Anfrage ist da</p>
+      <p class="anhaenger__nummer zahl" data-erfolg-nummer></p>
+      <p class="anhaenger__zeile" data-erfolg-termin></p>
+    </div>
+    <h2>Wie es weitergeht</h2>
+    <p>Wir haben Ihnen eine Mail mit diesem Link geschickt. Darüber sehen Sie den Stand, sagen den Termin ab oder löschen Ihre Daten. Bitte geben Sie ihn nicht weiter.</p>
+    <p><a class="knopf" href="../status/" data-erfolg-link>Stand ansehen</a></p>
+  </div>
+</section>
+
+</main>
+<footer class="fuss">
+  <div class="breite">
+    <div class="fuss__raster">
+      <div>
+        <h2>Radhaus Fuhse</h2>
+        <p>Speichenweg 7, 31224 Peine<br>Telefon <a href="tel:+493023125417">030 23125 417</a><br><a href="mailto:werkstatt@radhaus-fuhse.example">werkstatt@radhaus-fuhse.example</a></p>
+        <dl class="zeiten">
+          <dt>Mo bis Fr</dt><dd>8 bis 18 Uhr</dd>
+          <dt>Samstag</dt><dd>9 bis 13 Uhr</dd>
+        </dl>
+      </div>
+      <div>
+        <h2>Ihr Auftrag</h2>
+        <ul>
+          <li><a href="../termin/">Termin anfragen</a></li>
+          <li><a href="../status/">Reparaturstatus</a></li>
+          <li><a href="../widerruf/">Vertrag widerrufen</a></li>
+          <li><a href="../widerrufsbelehrung/">Widerrufsbelehrung</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Rechtliches</h2>
+        <ul>
+          <li><a href="../impressum/">Impressum</a></li>
+          <li><a href="../datenschutz/">Datenschutz</a></li>
+          <li><button class="linkknopf" type="button" data-einwilligung-oeffnen>Cookie-Einstellungen</button></li>
+          <li><a href="../barrierefreiheit/">Barrierefreiheit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fuss__unten">
+      <p>© 2026 Radhaus Fuhse (erfunden). Alle Preise inklusive 19 % Umsatzsteuer.</p>
+      <p>Musterprojekt von <a href="https://joermy.github.io/">Joermy</a></p>
+    </div>
+  </div>
+</footer>
+<script type="module" src="../assets/js/seite.js"></script>
+<script type="module" src="../assets/js/termin.js"></script>
+
+</body>
+</html>

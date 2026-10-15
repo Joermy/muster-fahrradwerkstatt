@@ -1,0 +1,174 @@
+@font-face { font-family: "Barlow"; src: url("../fonts/barlow-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("../fonts/barlow-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("../fonts/barlow-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow Semi Condensed"; src: url("../fonts/barlow-sc-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow Semi Condensed"; src: url("../fonts/barlow-sc-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow Semi Condensed"; src: url("../fonts/barlow-sc-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  --petrol: #0e4a4c;
+  --petrol-hell: #1f6e6c;
+  --petrol-tief: #07292a;
+  --kreide: #e7eae8;
+  --papier: #f7f8f6;
+  --tinte: #182124;
+  --grau: #4d5a5d;
+  --linie: #c5cdcb;
+  --signal: #f2c230;
+  --fehler: #a8231b;
+  --gut: #1d6b3f;
+  --nacht: #0b0f10;
+  --nacht-text: #e3ecea;
+  --nacht-grau: #9fb2ae;
+
+  --schrift: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --schrift-titel: "Barlow Semi Condensed", "Barlow", system-ui, sans-serif;
+
+  --groesse-text: 1.0625rem;
+  --groesse-klein: 0.9375rem;
+  --groesse-h3: 1.375rem;
+  --groesse-h2: clamp(1.95rem, 1.2rem + 2.6vw, 3.1rem);
+  --groesse-h1: clamp(2.7rem, 1.4rem + 5.4vw, 5.6rem);
+
+  --breite: 76rem;
+  --spalte: 40rem;
+  --rand: clamp(1rem, 4vw, 2.5rem);
+  --abstand: clamp(4rem, 9vw, 8.5rem);
+  --rund: 4px;
+  --schatten: 0 1px 0 rgba(24, 33, 36, 0.06), 0 10px 24px -14px rgba(24, 33, 36, 0.28);
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--kreide);
+  color: var(--tinte);
+  font-family: var(--schrift);
+  font-size: var(--groesse-text);
+  line-height: 1.58;
+  font-feature-settings: "kern", "liga";
+  font-variant-numeric: lining-nums;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+
+h1, h2, h3 {
+  font-family: var(--schrift-titel);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+h1 { font-size: var(--groesse-h1); line-height: 0.94; letter-spacing: -0.02em; }
+h2 { font-size: var(--groesse-h2); }
+h3 { font-size: var(--groesse-h3); font-weight: 600; line-height: 1.2; letter-spacing: 0; }
+p, ul, ol, dl, table { margin: 0 0 1em; }
+p { max-width: var(--spalte); text-wrap: pretty; }
+
+a { color: var(--petrol); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--petrol-hell); text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--tinte);
+  border-radius: 2px;
+}
+
+strong { font-weight: 600; }
+small { font-size: var(--groesse-klein); }
+.zahl { font-variant-numeric: tabular-nums; }
+
+.sprung {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--signal);
+  color: var(--tinte);
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  border-radius: var(--rund);
+}
+.sprung:focus { top: 1rem; }
+
+.unsichtbar {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.875rem;
+  padding: 0.65rem 1.2rem;
+  border: 2px solid var(--petrol);
+  border-radius: var(--rund);
+  background: var(--petrol);
+  color: var(--papier);
+  font: 600 1rem/1.1 var(--schrift);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.knopf:hover { background: var(--petrol-tief); border-color: var(--petrol-tief); color: var(--papier); text-decoration: none; }
+.knopf--leise { background: transparent; color: var(--petrol); }
+.knopf--leise:hover { background: var(--petrol); color: var(--papier); }
+.knopf--hell { background: var(--papier); border-color: var(--papier); color: var(--tinte); }
+.knopf--hell:hover { background: var(--signal); border-color: var(--signal); color: var(--tinte); }
+.knopf--rand-hell { background: transparent; border-color: rgba(227, 236, 234, 0.6); color: var(--nacht-text); }
+.knopf--rand-hell:hover { border-color: var(--nacht-text); background: rgba(227, 236, 234, 0.08); color: var(--nacht-text); }
+.knopf--gefahr { background: var(--fehler); border-color: var(--fehler); }
+.knopf--gefahr:hover { background: #7f1913; border-color: #7f1913; }
+.knopf[disabled], .knopf[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+.feld { display: grid; gap: 0.35rem; margin-bottom: 1.1rem; }
+.feld label, .feld legend { font-weight: 600; }
+.feld .hilfe { font-size: var(--groesse-klein); color: var(--grau); margin: 0; }
+.feld input, .feld select, .feld textarea {
+  width: 100%;
+  font: 400 1rem/1.4 var(--schrift);
+  color: var(--tinte);
+  background: var(--papier);
+  border: 1.5px solid #8a9694;
+  border-radius: var(--rund);
+  padding: 0.7rem 0.8rem;
+  min-height: 2.875rem;
+}
+.feld textarea { min-height: 7rem; resize: vertical; }
+.feld input:focus-visible, .feld select:focus-visible, .feld textarea:focus-visible { border-color: var(--petrol); }
+.feld [aria-invalid="true"] { border-color: var(--fehler); background: #fbefee; }
+.feld .fehlertext { color: var(--fehler); font-size: var(--groesse-klein); font-weight: 600; margin: 0; }
+.feld .fehlertext:empty { display: none; }
+.wahl { display: flex; gap: 0.6rem; align-items: flex-start; }
+.wahl input { width: 1.25rem; height: 1.25rem; margin-top: 0.15rem; accent-color: var(--petrol); flex: none; }
+
+.meldung {
+  border-left: 4px solid var(--petrol);
+  background: var(--papier);
+  padding: 0.9rem 1.1rem;
+  margin: 0 0 1.4rem;
+  max-width: var(--spalte);
+}
+.meldung--fehler { border-color: var(--fehler); }
+.meldung--gut { border-color: var(--gut); }
+.meldung p:last-child { margin-bottom: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

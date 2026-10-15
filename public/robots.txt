@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /verwaltung/
+Disallow: /api/
+Disallow: /status/
+
+Sitemap: https://radhaus-fuhse.example/sitemap.xml

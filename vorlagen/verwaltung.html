@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="de" data-basis="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="{{csp}}">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>Verwaltung – Radhaus Fuhse</title>
+<meta name="theme-color" content="#07292a">
+<link rel="icon" href="../assets/bilder/zeichen.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-sc-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/basis.css">
+<link rel="stylesheet" href="../assets/css/verwaltung.css">
+<script type="module" src="../assets/js/verwaltung/app.js"></script>
+</head>
+<body class="vw">
+<a class="sprung" href="#vw-inhalt">Zum Inhalt</a>
+<aside class="muster" aria-label="Hinweis zur Musterseite"><p>Musterseite: Diesen Betrieb gibt es nicht. {{muster_zusatz}}Gebaut von <a href="https://joermy.github.io/">Joermy</a>.</p></aside>
+<div class="vw-rahmen" data-rahmen>
+  <header class="vw-kopf">
+    <a class="vw-marke" href="#start">
+      <svg viewBox="0 0 64 64" width="36" height="36" aria-hidden="true"><rect width="64" height="64" rx="10" fill="#0e4a4c"/><path d="M12 30 32 12l20 18v22H12z" fill="none" stroke="#f7f8f6" stroke-width="4" stroke-linejoin="round"/><circle cx="32" cy="38" r="9.5" fill="none" stroke="#f2c230" stroke-width="3.5"/><path d="M32 28.5v19M23.8 33.2l16.4 9.6M23.8 42.8l16.4-9.6" stroke="#f2c230" stroke-width="1.8"/></svg>
+      <span><span class="vw-marke__name">Radhaus Fuhse</span><span class="vw-marke__teil">Werkstatt-Verwaltung</span></span>
+    </a>
+    <button class="vw-menueknopf" type="button" aria-expanded="false" aria-controls="vw-nav" data-menue hidden><span class="unsichtbar">Menü</span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <nav class="vw-nav" id="vw-nav" aria-label="Verwaltung" data-nav hidden></nav>
+    <div class="vw-konto" data-konto hidden></div>
+  </header>
+  <main class="vw-inhalt" id="vw-inhalt" tabindex="-1" data-inhalt>
+    <noscript><div class="meldung meldung--fehler"><p>Die Verwaltung braucht JavaScript.</p></div></noscript>
+    <p class="vw-laedt" data-laedt>Verwaltung wird geladen …</p>
+  </main>
+</div>
+<footer class="vw-fuss">
+  <a href="../">Zur Website</a>
+  <a href="../impressum/">Impressum</a>
+  <a href="../datenschutz/#verwaltung">Datenschutz</a>
+</footer>
+<div class="vw-hinweis" role="status" aria-live="polite" data-hinweis></div>
+</body>
+</html>

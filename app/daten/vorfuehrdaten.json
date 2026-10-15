@@ -1,0 +1,407 @@
+{
+ "hinweis": "Erfundene Vorführdaten. Namen und Adressen gibt es nicht, die Domains enden auf .example (RFC 2606), die Telefonnummern sind von der Bundesnetzagentur für Filme und Werbung reserviert.",
+ "auftraege": [
+  {
+   "leistung": "e-bike-inspektion",
+   "rad": "e-bike",
+   "tag": -2,
+   "zeit": "10:00",
+   "status": "wartet_auf_freigabe",
+   "name": "Jana Brückner",
+   "email": "jana.brueckner@beispiel.example",
+   "telefon": "030 23125 418",
+   "nachricht": "Motor macht beim Anfahren ein Klackgeräusch. Akku hält gefühlt kürzer.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt",
+    "angenommen",
+    "in_arbeit",
+    "wartet_auf_freigabe"
+   ],
+   "angebot": {
+    "positionen": [
+     {
+      "text": "Bremsbeläge vorne und hinten (Material)",
+      "cent": 4980
+     },
+     {
+      "text": "Bremsbeläge wechseln, 2 Bremsen",
+      "cent": 3800
+     },
+     {
+      "text": "Kette (Material)",
+      "cent": 3490
+     }
+    ]
+   },
+   "nummer": "RF-WK3D-EGZD",
+   "token": "6Pi_KGvBo-T6wql3Oq_15twbEUAS7tUVB1h8HkIVVQU"
+  },
+  {
+   "leistung": "bremsen",
+   "rad": "trekking",
+   "tag": 0,
+   "zeit": "08:30",
+   "status": "bestaetigt",
+   "name": "Hendrik Sasse",
+   "email": "h.sasse@beispiel.example",
+   "nachricht": "Hinterradbremse quietscht und greift spät.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-PCF5-4ERF",
+   "token": "RL1kwQaa0w-kQq_3Lz9rDrXEtQdOP8nfAMf9FzEFumw"
+  },
+  {
+   "leistung": "inspektion",
+   "rad": "city",
+   "tag": 0,
+   "zeit": "10:00",
+   "status": "bestaetigt",
+   "name": "Aylin Demir",
+   "email": "aylin.demir@beispiel.example",
+   "telefon": "030 23125 419",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-5DHQ-D3DQ",
+   "token": "l-gMEsXajYNi0_VMQGgIdRSmU3fGMpWaczqCQMIFzBQ"
+  },
+  {
+   "leistung": "laufrad",
+   "rad": "rennrad",
+   "tag": 0,
+   "zeit": "14:00",
+   "status": "angefragt",
+   "name": "Tobias Wendland",
+   "email": "tobias@wendland.example",
+   "nachricht": "Seitenschlag hinten nach Schlagloch.",
+   "verlauf": [
+    "angefragt"
+   ],
+   "nummer": "RF-CJU4-KHVM",
+   "token": "dQ9V85tWCNeoUmtnuRTUQKQMFI4pw0zW8TKqOYE0sPs"
+  },
+  {
+   "leistung": "schaltung",
+   "rad": "mtb",
+   "tag": -1,
+   "zeit": "15:30",
+   "status": "in_arbeit",
+   "name": "Lea Kowalski",
+   "email": "lea.k@beispiel.example",
+   "telefon": "030 23125 420",
+   "nachricht": "Springt im 3. und 4. Gang.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt",
+    "angenommen",
+    "in_arbeit"
+   ],
+   "nummer": "RF-GNZG-EDP9",
+   "token": "x1BAPS-26LvUdq0SAaAbEKyHvDqN_rezntMUN8J3hSE"
+  },
+  {
+   "leistung": "federung",
+   "rad": "mtb",
+   "tag": -3,
+   "zeit": "11:30",
+   "status": "abholbereit",
+   "name": "Pascal Behrens",
+   "email": "pascal.behrens@beispiel.example",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt",
+    "angenommen",
+    "in_arbeit",
+    "abholbereit"
+   ],
+   "nummer": "RF-5W77-ZVRM",
+   "token": "zML_5a0AB62gC4Nl8PJMl5BUmpwkQh0dA8vTtjysixI"
+  },
+  {
+   "leistung": "e-bike-inspektion",
+   "rad": "lastenrad",
+   "tag": -6,
+   "zeit": "08:30",
+   "status": "abgeschlossen",
+   "name": "Familie Hoppe",
+   "email": "hoppe@beispiel.example",
+   "telefon": "030 23125 421",
+   "nachricht": "Jährliche Inspektion.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt",
+    "angenommen",
+    "in_arbeit",
+    "wartet_auf_freigabe",
+    "in_arbeit",
+    "abholbereit",
+    "abgeschlossen"
+   ],
+   "angebot": {
+    "positionen": [
+     {
+      "text": "Reifen hinten 20 Zoll (Material)",
+      "cent": 3990
+     },
+     {
+      "text": "Reifen montieren",
+      "cent": 1500
+     }
+    ],
+    "entscheidung": "angenommen"
+   },
+   "nummer": "RF-RFV9-X6UE",
+   "token": "MRTYm1zE-y-xAGVLD9yZfp8S086TZtHUBcuyvzJn-Rs"
+  },
+  {
+   "leistung": "reifen",
+   "rad": "kinder",
+   "tag": -8,
+   "zeit": "17:00",
+   "status": "abgeschlossen",
+   "name": "Sven Rautenberg",
+   "email": "rautenberg@beispiel.example",
+   "nachricht": "Platten vorne.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt",
+    "angenommen",
+    "in_arbeit",
+    "abholbereit",
+    "abgeschlossen"
+   ],
+   "nummer": "RF-H4LX-K94C",
+   "token": "nuS7WsH-WVAAyTtgo_Z0pXN2dAAFrABQb6uAElZVNLs"
+  },
+  {
+   "leistung": "antrieb",
+   "rad": "trekking",
+   "tag": -10,
+   "zeit": "10:00",
+   "status": "abgeschlossen",
+   "name": "Ines Grabowski",
+   "email": "ines.g@beispiel.example",
+   "telefon": "030 23125 422",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt",
+    "angenommen",
+    "in_arbeit",
+    "abholbereit",
+    "abgeschlossen"
+   ],
+   "nummer": "RF-EWXY-97EF",
+   "token": "PDrTdHEkKOq6DzaLo2RillTgGFDMiDEGiaamXppuuCQ"
+  },
+  {
+   "leistung": "inspektion",
+   "rad": "city",
+   "tag": -12,
+   "zeit": "09:00",
+   "status": "storniert",
+   "name": "Mehmet Yıldız",
+   "email": "mehmet.y@beispiel.example",
+   "verlauf": [
+    "angefragt",
+    "storniert"
+   ],
+   "nummer": "RF-T8ED-V6U2",
+   "token": "oVxV9_jTzjC-3s3OK0LlLeJFsHyvVreP8Ema6jAKLdk"
+  },
+  {
+   "leistung": "bremsen",
+   "rad": "e-bike",
+   "tag": 2,
+   "zeit": "11:30",
+   "status": "bestaetigt",
+   "name": "Karin Pohlmann",
+   "email": "k.pohlmann@beispiel.example",
+   "telefon": "030 23125 423",
+   "nachricht": "Druckpunkt vorne wandert.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-YB7Y-LH9D",
+   "token": "W9g-SrhWKrk-5LlSKtavZLOFNSk_EJl_xLQktv42SlQ"
+  },
+  {
+   "leistung": "e-bike-inspektion",
+   "rad": "e-bike",
+   "tag": 3,
+   "zeit": "08:30",
+   "status": "angefragt",
+   "name": "Jonas Albers",
+   "email": "jonas.albers@beispiel.example",
+   "nachricht": "Display zeigt Fehler 503.",
+   "verlauf": [
+    "angefragt"
+   ],
+   "quelle": "werkstatt",
+   "nummer": "RF-PUJR-339F",
+   "token": "-pa2NwkYIB-hd3XMEwgpgFBrVS_K3ZDCDWz2j2iD_w8"
+  },
+  {
+   "leistung": "sonstiges",
+   "rad": "lastenrad",
+   "tag": 4,
+   "zeit": "14:00",
+   "status": "angefragt",
+   "name": "Greta Lindemann",
+   "email": "greta@lindemann.example",
+   "telefon": "030 23125 424",
+   "nachricht": "Kindersitz montieren und Licht prüfen.",
+   "verlauf": [
+    "angefragt"
+   ],
+   "nummer": "RF-L63T-J5T4",
+   "token": "V7HIpb_jEu807cca8OSQuPEUj4ENm0DfM8s4xX9UWeI"
+  },
+  {
+   "leistung": "schaltung",
+   "rad": "rennrad",
+   "tag": -15,
+   "zeit": "17:00",
+   "status": "nicht_erschienen",
+   "name": "Ole Brandt",
+   "email": "ole.brandt@beispiel.example",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt",
+    "nicht_erschienen"
+   ],
+   "nummer": "RF-Y2QK-FMKQ",
+   "token": "JLF9SeBeC4mqSjgxF2uNhwxJgNEfccHka7K1nCK9Ps0"
+  },
+  {
+   "leistung": "inspektion",
+   "rad": "city",
+   "tag": 1,
+   "zeit": "10:00",
+   "status": "bestaetigt",
+   "name": "Paula Engelke",
+   "email": "paula.engelke@beispiel.example",
+   "telefon": "030 23125 431",
+   "nachricht": "Klingel klemmt, sonst nur Durchsicht vor dem Winter.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-B9UV-6N68",
+   "token": "oFprfHguYikvzg4Cc3OjLPt0vFjoZ_vmpQNEflPfSXE"
+  },
+  {
+   "leistung": "reifen",
+   "rad": "trekking",
+   "tag": 1,
+   "zeit": "15:30",
+   "status": "bestaetigt",
+   "name": "Murat Aksoy",
+   "email": "m.aksoy@beispiel.example",
+   "nachricht": "Hinterreifen ist abgefahren, gern gleich einen Winterreifen.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-QXJU-J839",
+   "token": "fEPnL7Z-CjZoiJkev4EEKK4SS0NkZza8hkI8YYFY7Io"
+  },
+  {
+   "leistung": "e-bike-inspektion",
+   "rad": "e-bike",
+   "tag": 2,
+   "zeit": "08:30",
+   "status": "bestaetigt",
+   "name": "Heike und Rolf Bartels",
+   "email": "bartels@beispiel.example",
+   "telefon": "030 23125 433",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-3VSC-RFQ6",
+   "token": "5_jUBG-4-tv5kEUPWv4x6KeuAX1Vo9ZhY_3D3F78_mo"
+  },
+  {
+   "leistung": "antrieb",
+   "rad": "e-bike",
+   "tag": 5,
+   "zeit": "10:00",
+   "status": "angefragt",
+   "name": "Lukas Meinecke",
+   "email": "lukas.meinecke@beispiel.example",
+   "nachricht": "Kette springt auf den kleinen Ritzeln.",
+   "verlauf": [
+    "angefragt"
+   ],
+   "nummer": "RF-SA8G-73X3",
+   "token": "sol-a9wfzCJru-HT8q3x-AqlnR4BOmpzI3WBM9Psdio"
+  },
+  {
+   "leistung": "bremsen",
+   "rad": "city",
+   "tag": 6,
+   "zeit": "11:30",
+   "status": "bestaetigt",
+   "name": "Svenja Krüger",
+   "email": "svenja.krueger@beispiel.example",
+   "telefon": "030 23125 435",
+   "nachricht": "Vorderbremse quietscht stark.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-V6DB-58J2",
+   "token": "gNxJ9OgRmQFF3oqFq7dvyKP9IWhq_GvD88eYjaCHNCI"
+  },
+  {
+   "leistung": "federung",
+   "rad": "e-bike",
+   "tag": 7,
+   "zeit": "14:00",
+   "status": "angefragt",
+   "name": "Dennis Wolter",
+   "email": "d.wolter@beispiel.example",
+   "verlauf": [
+    "angefragt"
+   ],
+   "nummer": "RF-SCBR-EUUP",
+   "token": "nLlmZ3ll_SnPXElUoKagQVgz7OTyuawH0K7kBIAfyA4"
+  },
+  {
+   "leistung": "inspektion",
+   "rad": "kinder",
+   "tag": 9,
+   "zeit": "08:30",
+   "status": "bestaetigt",
+   "name": "Anja Struck",
+   "email": "anja.struck@beispiel.example",
+   "telefon": "030 23125 437",
+   "nachricht": "Kinderrad 20 Zoll, Bremsen und Licht.",
+   "verlauf": [
+    "angefragt",
+    "bestaetigt"
+   ],
+   "nummer": "RF-PG8W-ZGPZ",
+   "token": "y8kWvUT7CAVhqaysLRlLvgmqGOKGcxyKNTtIuwbQzsA"
+  },
+  {
+   "leistung": "schaltung",
+   "rad": "trekking",
+   "tag": 12,
+   "zeit": "17:00",
+   "status": "angefragt",
+   "name": "Tim Oetker",
+   "email": "tim.o@beispiel.example",
+   "verlauf": [
+    "angefragt"
+   ],
+   "nummer": "RF-2WBJ-M2MK",
+   "token": "ztyX5iyDD8M3g5Fml48xhuCLar-sEOrZRJSc9Azi8RM"
+  }
+ ]
+}

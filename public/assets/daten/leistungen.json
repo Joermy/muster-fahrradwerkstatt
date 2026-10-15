@@ -1,0 +1,106 @@
+{
+  "fassung": "2026-10",
+  "hinweis": "Alle Preise in Euro inklusive 19 % Umsatzsteuer. Ersatzteile kommen nach Absprache dazu.",
+  "stundensatz_cent": 7200,
+  "leistungen": [
+    {
+      "kennung": "inspektion",
+      "titel": "Inspektion",
+      "preis_cent": 8900,
+      "einheit": "pauschal",
+      "dauer_min": 60,
+      "teile": ["rahmen", "lenker", "sattel"],
+      "kurz": "Alle Schrauben, Lager, Züge, Bremsen und Schaltung durchgesehen und eingestellt.",
+      "umfang": ["Sichtprüfung Rahmen und Gabel", "Lager, Steuersatz, Tretlager prüfen", "Bremsen und Schaltung einstellen", "Kette reinigen und ölen", "Reifendruck, Beleuchtung, Probefahrt"]
+    },
+    {
+      "kennung": "e-bike-inspektion",
+      "titel": "E-Bike-Inspektion",
+      "preis_cent": 13900,
+      "einheit": "pauschal",
+      "dauer_min": 90,
+      "teile": ["motor", "akku", "display"],
+      "kurz": "Inspektion plus Diagnose von Motor, Akku und Display mit Software-Update.",
+      "umfang": ["Alles aus der Inspektion", "Fehlerspeicher auslesen", "Software-Update des Antriebs", "Akku-Kapazitätstest", "Steckverbindungen und Kabel prüfen"]
+    },
+    {
+      "kennung": "bremsen",
+      "titel": "Bremsen-Service",
+      "preis_cent": 3900,
+      "einheit": "je Bremse",
+      "dauer_min": 30,
+      "teile": ["bremsscheibe", "bremssattel", "bremshebel"],
+      "kurz": "Hydraulische Scheibenbremse entlüften, Beläge prüfen, Druckpunkt einstellen.",
+      "umfang": ["Bremsflüssigkeit tauschen und entlüften", "Belagstärke messen", "Scheibe auf Verschleiß und Schlag prüfen", "Sattel ausrichten"]
+    },
+    {
+      "kennung": "schaltung",
+      "titel": "Schaltung einstellen",
+      "preis_cent": 1900,
+      "einheit": "pauschal",
+      "dauer_min": 20,
+      "teile": ["schaltwerk", "schalthebel"],
+      "kurz": "Schaltwerk und Zug einstellen, Schaltauge prüfen.",
+      "umfang": ["Schaltauge ausrichten", "Anschläge und Zugspannung einstellen", "Gänge unter Last prüfen"]
+    },
+    {
+      "kennung": "antrieb",
+      "titel": "Kette und Kassette tauschen",
+      "preis_cent": 2500,
+      "einheit": "Arbeitslohn",
+      "dauer_min": 30,
+      "teile": ["kette", "kassette", "kettenblatt"],
+      "kurz": "Verschleiß messen, Kette und Kassette wechseln. Teile nach Absprache.",
+      "umfang": ["Kettenlängung messen", "Kette und Kassette wechseln", "Schaltung nachstellen"]
+    },
+    {
+      "kennung": "laufrad",
+      "titel": "Laufrad zentrieren",
+      "preis_cent": 2500,
+      "einheit": "je Laufrad",
+      "dauer_min": 30,
+      "teile": ["laufrad", "speichen", "nabe"],
+      "kurz": "Seiten- und Höhenschlag entfernen, Speichenspannung angleichen.",
+      "umfang": ["Speichenspannung messen", "Seiten- und Höhenschlag richten", "Nabe prüfen"]
+    },
+    {
+      "kennung": "reifen",
+      "titel": "Reifen und Schlauch",
+      "preis_cent": 1500,
+      "einheit": "je Laufrad",
+      "dauer_min": 20,
+      "teile": ["reifen"],
+      "kurz": "Reifen oder Schlauch wechseln, Felgenband prüfen. Material nach Absprache.",
+      "umfang": ["Reifen und Schlauch wechseln", "Felgenband prüfen", "Druck nach Freigabe des Herstellers"]
+    },
+    {
+      "kennung": "federung",
+      "titel": "Federgabel-Service",
+      "preis_cent": 7900,
+      "einheit": "pauschal",
+      "dauer_min": 60,
+      "teile": ["federgabel"],
+      "kurz": "Kleiner Service: Staubabstreifer, Schaumringe und Öl im Tauchrohr.",
+      "umfang": ["Tauchrohre abziehen und reinigen", "Staubabstreifer und Schaumringe tauschen", "Öl wechseln", "Luftdruck auf Fahrergewicht einstellen"]
+    },
+    {
+      "kennung": "sonstiges",
+      "titel": "Etwas anderes",
+      "preis_cent": 1800,
+      "einheit": "je angefangene 15 Minuten",
+      "dauer_min": 30,
+      "teile": [],
+      "kurz": "Was nicht in der Liste steht. Abgerechnet nach Arbeitszeit.",
+      "umfang": ["Beschreibung im Feld Nachricht", "Kostenvoranschlag vor Beginn"]
+    }
+  ],
+  "raeder": [
+    {"kennung": "city", "titel": "Stadtrad"},
+    {"kennung": "trekking", "titel": "Trekkingrad"},
+    {"kennung": "e-bike", "titel": "E-Bike / Pedelec"},
+    {"kennung": "mtb", "titel": "Mountainbike"},
+    {"kennung": "rennrad", "titel": "Rennrad / Gravel"},
+    {"kennung": "lastenrad", "titel": "Lastenrad"},
+    {"kennung": "kinder", "titel": "Kinderrad"}
+  ]
+}

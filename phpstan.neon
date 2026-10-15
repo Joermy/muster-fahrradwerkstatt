@@ -1,0 +1,10 @@
+parameters:
+    level: 8
+    paths:
+        - app
+        - bin
+        - public
+        - konfig
+    bootstrapFiles:
+        - app/bootstrap.php
+    treatPhpDocTypesAsCertain: false

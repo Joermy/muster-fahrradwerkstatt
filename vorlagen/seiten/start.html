@@ -1,0 +1,167 @@
+<section class="werkstatt" id="werkstatt" data-werkstatt aria-label="So läuft eine Inspektion ab">
+  <div class="werkstatt__buehne">
+    <canvas class="werkstatt__leinwand" aria-hidden="true"></canvas>
+    <img class="werkstatt__standbild" src="{{basis}}assets/bilder/werkstatt-1600.webp" srcset="{{basis}}assets/bilder/werkstatt-800.webp 800w, {{basis}}assets/bilder/werkstatt-1600.webp 1600w" sizes="100vw" width="1600" height="1000" alt="E-Bike im Montageständer in einer Werkstatt bei Nacht, petrolfarbener Rahmen, goldene Federgabel, Reifen mit hellen Flanken" data-standbild hidden>
+    <div class="werkstatt__laden" data-laden>
+      <div class="balken"><span data-laden-balken></span></div>
+      <p>Werkstatt wird eingerichtet …</p>
+    </div>
+    <div class="werkstatt__befunde" data-befunde aria-hidden="true"></div>
+    <div class="werkstatt__anzeige" data-anzeige aria-hidden="true">
+      <div class="wert wert--antrieb"><b data-feld="gang">7 / 12</b><span>Gang</span></div>
+      <div class="wert wert--antrieb"><b data-feld="ritzel">38 : 24</b><span>Kettenblatt : Ritzel</span></div>
+      <div class="wert wert--bremse"><b data-feld="temperatur">24 °C</b><span>Bremsscheibe</span></div>
+      <div class="wert wert--bremse"><b data-feld="drehzahl">0 U/min</b><span>Laufrad</span></div>
+      <div class="wert wert--laufrad"><b data-feld="schlag">3,2 mm</b><span>Seitenschlag</span></div>
+      <div class="wert wert--laufrad"><b data-feld="spannung">± 18 %</b><span>Speichenspannung</span></div>
+    </div>
+    <div class="werkstatt__teile" data-teile hidden>
+      <p>Bauteil antippen oder hier wählen:</p>
+      <button class="teilknopf" type="button" data-teil-knopf="bremsscheibe_v">Bremse</button>
+      <button class="teilknopf" type="button" data-teil-knopf="kette">Kette</button>
+      <button class="teilknopf" type="button" data-teil-knopf="schaltwerk_kaefig">Schaltung</button>
+      <button class="teilknopf" type="button" data-teil-knopf="akku">Akku</button>
+      <button class="teilknopf" type="button" data-teil-knopf="speichen_h">Laufrad</button>
+      <button class="teilknopf" type="button" data-teil-knopf="reifen_v">Reifen</button>
+      <button class="teilknopf" type="button" data-teil-knopf="gabel">Federgabel</button>
+    </div>
+    <div class="teilkarte" data-teil-karte role="dialog" aria-modal="false" aria-labelledby="teilkarte-titel" hidden>
+      <button class="teilkarte__zu" type="button" data-karte-zu aria-label="Schließen">×</button>
+      <p class="teilkarte__teil" data-karte-teil>Bauteil</p>
+      <h3 id="teilkarte-titel" data-karte-titel>Leistung</h3>
+      <p class="teilkarte__preis" data-karte-preis></p>
+      <p data-karte-text></p>
+      <a class="knopf" href="{{basis}}termin/" data-karte-link>Termin dafür anfragen</a>
+    </div>
+  </div>
+
+  <div class="werkstatt__kapitel" data-kapitel-liste>
+    <article class="kapitel kapitel--start" data-kapitel="0">
+      <div class="kapitel__text breite">
+        <h1>Fahrradwerkstatt in Peine</h1>
+        <p class="einleitung">Inspektion, Bremsen, E-Bike-Diagnose. Termin online anfragen und den Stand Ihrer Reparatur jederzeit über Ihren Link sehen.</p>
+        <div class="aktionen">
+          <a class="knopf knopf--hell" href="{{basis}}termin/">Termin anfragen</a>
+          <a class="knopf knopf--rand-hell" href="{{basis}}leistungen/">Preise ansehen</a>
+        </div>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="1">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 1 von 7</span>
+        <h2>Erst messen, dann schrauben</h2>
+        <p>Wir lesen den Fehlerspeicher aus, messen Kette, Bremsbeläge, Reifendruck und Speichenspannung. Die Werte bekommen Sie, bevor wir etwas tauschen.</p>
+      </div>
+    </article>
+    <article class="kapitel kapitel--rechts" data-kapitel="2">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 2 von 7</span>
+        <h2>Jedes Teil einzeln</h2>
+        <p>Laufräder, Antrieb, Bremsen und Akku kommen ab. So sehen wir Verschleiß, statt ihn zu schätzen, und reinigen, wo der Schmutz wirklich sitzt.</p>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="3">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 3 von 7</span>
+        <h2>Zwölf Gänge, sauber eingestellt</h2>
+        <p>Wir schalten jede Stufe unter Last und stellen nach, bis die Kette ohne Rasseln wechselt. Eine gelängte Kette tauschen wir, bevor sie die Kassette mitnimmt.</p>
+        <p class="preis">Kette und Kassette tauschen: 25,00 € Arbeitslohn · <a href="{{basis}}termin/?leistung=antrieb">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel kapitel--rechts" data-kapitel="4">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 4 von 7</span>
+        <h2>Bremsen, die zupacken</h2>
+        <p>Bremsflüssigkeit tauschen, Beläge messen, Druckpunkt einstellen. Danach bremsen wir auf dem Prüfstand, bis die Scheibe glüht, und prüfen, ob sie gerade bleibt.</p>
+        <p class="preis">Bremsen-Service: 39,00 € je Bremse · <a href="{{basis}}termin/?leistung=bremsen">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="5">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 5 von 7</span>
+        <h2>Rund läuft es erst ohne Schlag</h2>
+        <p>Die Farben zeigen die Spannung jeder Speiche. Wir gleichen sie an und richten die Felge, bis sie weniger als 0,3 mm zur Seite schlägt.</p>
+        <p class="preis">Laufrad zentrieren: 25,00 € je Laufrad · <a href="{{basis}}termin/?leistung=laufrad">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel kapitel--rechts" data-kapitel="6">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 6 von 7</span>
+        <h2>Akku und Motor im Blick</h2>
+        <p>Kapazitätstest, Software-Update, Steckverbindungen. Sie erfahren, wie viel Ihr Akku noch kann und ob sich ein neuer lohnt.</p>
+        <p class="preis">E-Bike-Inspektion: 139,00 € · <a href="{{basis}}termin/?leistung=e-bike-inspektion">Termin anfragen</a></p>
+      </div>
+    </article>
+    <article class="kapitel" data-kapitel="7">
+      <div class="kapitel__text">
+        <span class="kapitel__schritt">Schritt 7 von 7</span>
+        <h2>Abholbereit</h2>
+        <p>Probefahrt, Protokoll, Übergabe. Den Stand sehen Sie während der ganzen Reparatur über Ihren Link, und zusätzliche Arbeiten geben Sie dort selbst frei.</p>
+        <p><a class="knopf knopf--hell" href="{{basis}}termin/">Termin anfragen</a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="abschnitt" aria-labelledby="ablauf-titel">
+  <div class="breite">
+    <div class="abschnitt__kopf">
+      <h2 id="ablauf-titel">So kommen Sie zu Ihrem Termin</h2>
+      <p>Kein Konto, kein Passwort. Sie bekommen einen Link, über den Sie alles zu Ihrem Auftrag erledigen.</p>
+    </div>
+    <ol class="ablauf">
+      <li><h3>Anfragen</h3><p>Leistung und freie Annahmezeit wählen. Wir bestätigen den Termin per Mail.</p></li>
+      <li><h3>Bringen</h3><p>Sie bringen das Rad zur gewählten Zeit. Den Auftrag besprechen wir vor Ort.</p></li>
+      <li><h3>Verfolgen</h3><p>Über Ihren Link sehen Sie den Stand und geben Zusatzarbeiten frei oder lehnen sie ab.</p></li>
+      <li><h3>Abholen</h3><p>Sie bekommen Bescheid, sobald das Rad fertig ist. Bezahlt wird bei Abholung.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="abschnitt abschnitt--hell" aria-labelledby="preise-titel">
+  <div class="breite zwei">
+    <div>
+      <h2 id="preise-titel">Feste Preise für die häufigsten Arbeiten</h2>
+      <p>Alle Preise inklusive 19 % Umsatzsteuer. Ersatzteile kommen nach Absprache dazu; was über den genannten Umfang hinausgeht, machen wir erst nach Ihrer Freigabe.</p>
+      <p><a class="knopf knopf--leise" href="{{basis}}leistungen/">Alle Leistungen und Preise</a></p>
+    </div>
+    <div>
+      {{preise_auszug}}
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt abschnitt--petrol" aria-labelledby="daten-titel">
+  <div class="breite zwei">
+    <div>
+      <h2 id="daten-titel">Ihre Daten bleiben in der Werkstatt</h2>
+      <p>Für einen Termin brauchen wir Ihren Namen und Ihre E-Mail-Adresse, sonst nichts. Eine Telefonnummer ist freiwillig.</p>
+      <p><a href="{{basis}}datenschutz/">Datenschutzerklärung lesen</a></p>
+    </div>
+    <ul class="liste-ruhig">
+      <li>Namen, Adressen und Nachrichten liegen verschlüsselt in unserer Datenbank.</li>
+      <li>Ihre Daten herunterladen oder löschen können Sie selbst über Ihren Link.</li>
+      <li>Abgesagte Termine löschen wir nach 30 Tagen, abgeschlossene Aufträge nach Ende der Gewährleistung.</li>
+      <li>Keine Werbenetzwerke, keine Analysedienste, keine Besucherzählung.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="abschnitt" aria-labelledby="ort-titel">
+  <div class="breite zwei">
+    <div>
+      <h2 id="ort-titel">Werkstatt und Öffnungszeiten</h2>
+      <p>{{strasse}}, {{ort}}<br>Telefon <a href="tel:{{telefon_link}}">{{telefon}}</a></p>
+      <dl class="zeiten">
+        <dt>Montag bis Freitag</dt><dd>8 bis 18 Uhr</dd>
+        <dt>Samstag</dt><dd>9 bis 13 Uhr</dd>
+        <dt>Sonntag und Feiertage</dt><dd>geschlossen</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>Annahme ohne Wartezeit</h3>
+      <p>Wer einen Termin hat, gibt sein Rad zur gewählten Zeit direkt in der Werkstatt ab. Ohne Termin nehmen wir Räder an, wenn Platz ist.</p>
+      <p><a class="knopf" href="{{basis}}termin/">Termin anfragen</a></p>
+    </div>
+  </div>
+</section>

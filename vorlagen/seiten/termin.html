@@ -1,0 +1,77 @@
+<header class="seitenkopf breite">
+  <h1>Termin anfragen</h1>
+  <p>In drei Schritten zur Annahmezeit. Wir bestätigen den Termin per Mail, den Reparaturauftrag besprechen wir bei der Annahme in der Werkstatt.</p>
+</header>
+<section class="breite inhalt-text" aria-label="Terminanfrage">
+  <noscript><p class="meldung">Für die Terminanfrage braucht diese Seite JavaScript. Sie erreichen uns auch telefonisch unter {{telefon}}.</p></noscript>
+  <ol class="schritte" data-schritte>
+    <li data-schritt-anzeige="1" aria-current="step">1. Leistung</li>
+    <li data-schritt-anzeige="2">2. Termin</li>
+    <li data-schritt-anzeige="3">3. Kontakt</li>
+    <li data-schritt-anzeige="4">4. Prüfen</li>
+  </ol>
+  <form method="post" class="karte" data-termin novalidate>
+    <div data-schritt="1">
+      <fieldset class="auswahl" data-leistungen><legend>Was sollen wir machen?</legend></fieldset>
+      <fieldset class="auswahl" data-raeder><legend>Welches Rad bringen Sie?</legend></fieldset>
+      <p class="fehlertext" data-fehler="schritt1" role="alert"></p>
+    </div>
+    <div data-schritt="2" hidden>
+      <h2 class="unsichtbar">Termin wählen</h2>
+      <p>Annahmezeiten der nächsten vier Wochen. Durchgestrichene Zeiten sind vergeben.</p>
+      <div class="kalender" data-kalender aria-live="polite"></div>
+      <p class="fehlertext" data-fehler="termin" role="alert"></p>
+    </div>
+    <div data-schritt="3" hidden>
+      <div class="feld">
+        <label for="name">Ihr Name</label>
+        <input id="name" name="name" autocomplete="name" required maxlength="80" aria-describedby="name-fehler">
+        <p class="fehlertext" id="name-fehler" data-fehler="name"></p>
+      </div>
+      <div class="feld">
+        <label for="email">E-Mail-Adresse</label>
+        <p class="hilfe" id="email-hilfe">Dorthin schicken wir die Bestätigung und den Link zu Ihrem Auftrag.</p>
+        <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" aria-describedby="email-hilfe email-fehler">
+        <p class="fehlertext" id="email-fehler" data-fehler="email"></p>
+      </div>
+      <div class="feld">
+        <label for="telefon">Telefon <span class="hilfe">(freiwillig)</span></label>
+        <p class="hilfe" id="telefon-hilfe">Nur für Rückfragen, falls etwas am Rad unklar ist.</p>
+        <input id="telefon" name="telefon" type="tel" autocomplete="tel" maxlength="25" aria-describedby="telefon-hilfe telefon-fehler">
+        <p class="fehlertext" id="telefon-fehler" data-fehler="telefon"></p>
+      </div>
+      <div class="feld">
+        <label for="nachricht">Was sollen wir wissen? <span class="hilfe">(freiwillig)</span></label>
+        <textarea id="nachricht" name="nachricht" maxlength="1000" aria-describedby="nachricht-hilfe nachricht-fehler"></textarea>
+        <p class="hilfe" id="nachricht-hilfe">Zum Beispiel Geräusche, Fehlercodes im Display oder was zuletzt gemacht wurde. Bitte keine Gesundheitsangaben.</p>
+        <p class="fehlertext" id="nachricht-fehler" data-fehler="nachricht"></p>
+      </div>
+      <div class="lockfeld" aria-hidden="true">
+        <label for="firma">Firma (bitte leer lassen)</label>
+        <input id="firma" name="firma" tabindex="-1" autocomplete="off">
+      </div>
+    </div>
+    <div data-schritt="4" hidden>
+      <h2>Bitte prüfen</h2>
+      <dl class="zusammenfassung" data-zusammenfassung></dl>
+      <p class="hilfe">Ihre Angaben verwenden wir nur für diesen Termin und den Auftrag. Abgesagte Termine löschen wir nach 30 Tagen, abgeschlossene Aufträge nach Ende der Gewährleistung. Mehr dazu in der <a href="../datenschutz/#termin">Datenschutzerklärung</a>.</p>
+      <p class="hilfe">Die Anfrage ist noch kein Auftrag und kostet nichts.</p>
+      <div class="meldung meldung--fehler" data-sendefehler role="alert" hidden></div>
+    </div>
+    <div class="formular-aktionen">
+      <button class="knopf knopf--leise" type="button" data-zurueck hidden>Zurück</button>
+      <button class="knopf" type="button" data-weiter>Weiter</button>
+      <button class="knopf" type="submit" data-senden hidden>Termin anfragen</button>
+    </div>
+  </form>
+  <div data-erfolg hidden>
+    <div class="anhaenger" tabindex="-1" data-erfolg-fokus>
+      <p class="anhaenger__zeile">Ihre Anfrage ist da</p>
+      <p class="anhaenger__nummer zahl" data-erfolg-nummer></p>
+      <p class="anhaenger__zeile" data-erfolg-termin></p>
+    </div>
+    <h2>Wie es weitergeht</h2>
+    <p>Wir haben Ihnen eine Mail mit diesem Link geschickt. Darüber sehen Sie den Stand, sagen den Termin ab oder löschen Ihre Daten. Bitte geben Sie ihn nicht weiter.</p>
+    <p><a class="knopf" href="../status/" data-erfolg-link>Stand ansehen</a></p>
+  </div>
+</section>

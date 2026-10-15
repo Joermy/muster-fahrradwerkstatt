@@ -1,0 +1,27 @@
+<header class="seitenkopf breite">
+  <h1>Reparaturstatus</h1>
+  <p data-status-einleitung>Den Stand Ihres Auftrags sehen Sie über den Link aus Ihrer Bestätigungsmail.</p>
+</header>
+<section class="breite inhalt-text" aria-live="polite">
+  <noscript><p class="meldung">Der Reparaturstatus braucht JavaScript. Sie erreichen uns auch telefonisch unter {{telefon}}.</p></noscript>
+  <div data-status hidden></div>
+  <div data-ohne-link hidden>
+    <h2>Link verloren?</h2>
+    <p>Geben Sie Auftragsnummer und E-Mail-Adresse ein. Passen beide zusammen, schicken wir einen neuen Link an diese Adresse; der alte funktioniert danach nicht mehr.</p>
+    <form method="post" class="karte" data-link-formular novalidate>
+      <div class="feld">
+        <label for="nummer">Auftragsnummer</label>
+        <input id="nummer" name="nummer" autocomplete="off" placeholder="RF-XXXX-XXXX" maxlength="12" aria-describedby="nummer-fehler">
+        <p class="fehlertext" id="nummer-fehler" data-fehler="nummer"></p>
+      </div>
+      <div class="feld">
+        <label for="link-email">E-Mail-Adresse</label>
+        <input id="link-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="link-email-fehler">
+        <p class="fehlertext" id="link-email-fehler" data-fehler="email"></p>
+      </div>
+      <div class="meldung" data-link-meldung role="status" hidden></div>
+      <p class="hilfe">Nummer und E-Mail-Adresse nutzen wir nur, um sie mit Ihrem Auftrag abzugleichen. Mehr dazu in der <a href="{{basis}}datenschutz/#status">Datenschutzerklärung</a>.</p>
+      <button class="knopf" type="submit">Neuen Link anfordern</button>
+    </form>
+  </div>
+</section>

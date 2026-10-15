@@ -1,0 +1,63 @@
+# Radhaus Fuhse – Apache 2.4 (z. B. Hetzner Managed Server)
+# Dieselben Sicherheitsköpfe stehen in konfig/kopfzeilen.php und konfig/nginx.conf.
+# Prüfen, dass alle drei übereinstimmen: php bin/pruefen.php
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+
+<IfModule mod_mime.c>
+  AddType text/javascript .js
+  AddType model/gltf-binary .glb
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Versteckte Dateien (.env, .git, .htaccess) nie ausliefern, außer .well-known
+  RewriteRule "(^|/)\.(?!well-known/)" - [F,L]
+
+  # PHP-Dateien sind nicht direkt aufrufbar; nur die Schnittstelle läuft über index.php
+  RewriteCond %{THE_REQUEST} \.php[\s?/] [NC]
+  RewriteRule ^ - [F,L]
+
+  # Schnittstelle
+  RewriteRule ^api/ index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+
+  # Statische Seiten. Die Schnittstelle setzt ihre eigenen, strengeren Köpfe in PHP.
+  <If "%{THE_REQUEST} !~ m#^[A-Z]+ /api/#">
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; frame-src https://www.openstreetmap.org; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set X-Frame-Options "DENY"
+  </If>
+
+  # Nur über HTTPS: Browser merken sich, dass es die Seite nur verschlüsselt gibt
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains" "expr=%{HTTPS} == 'on'"
+
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|json|woff2|glb|webp|jpg|png|svg)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+# Verwaltung: kein Grund, sie in Suchmaschinen zu finden
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/verwaltung/#">
+    Header always set X-Robots-Tag "noindex, nofollow"
+    Header always set Referrer-Policy "no-referrer"
+  </If>
+</IfModule>
