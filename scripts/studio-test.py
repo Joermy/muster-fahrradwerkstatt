@@ -27,6 +27,8 @@ ANSICHTEN = {
     "front": ((1700, -500, 700), (1200, 0, 560), 34),
     "links": ((640, 3600, 520), (640, 0, 470), 24),
     "krone": ((1900, -420, 1150), (985, 0, 900), 20),
+    "bremse": ((1420, 560, 540), (1190, 52, 420), 29),
+    "sattel": ((1240, 400, 560), (1183, 51, 424), 20),
 }
 
 
@@ -70,10 +72,12 @@ def kamera(s, ansicht):
 
 def main():
     ansichten = [a for a in ARGS if not a.startswith("--")] or ["seite", "dreiviertel"]
-    proben = 32
+    proben, hitze = 32, 0.0
     for a in ARGS:
         if a.startswith("--proben="):
             proben = int(a.split("=")[1])
+        if a.startswith("--hitze="):
+            hitze = float(a.split("=")[1])
     dekor.alle()
     s = leeren()
     materialien.zuruecksetzen()
@@ -82,6 +86,8 @@ def main():
     print("Rad gebaut in", round(time.time() - t0, 1), "s;", sum(len(o.data.polygons) for o in teile.values() if o.type == "MESH"), "Flächen")
     antrieb = kette.Antrieb(teile, gruppen)
     print(antrieb.setzen(6, 0.0, 0.0, 0.0))
+    teile["bremsscheibe_v"]["hitze"] = hitze
+    teile["bremsscheibe_v"]["anlauf"] = hitze * 0.9
     bild = os.path.join(dekor.ZIEL, "display-test.png")
     dekor.displayinhalt(bild, "Bereit", "0", "km/h", [("Unterstützung: Tour", None)])
     materialien.holen("Bildschirm").node_tree.nodes["Inhalt"].image = bpy.data.images.load(bild)

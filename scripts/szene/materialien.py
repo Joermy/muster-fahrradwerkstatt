@@ -320,7 +320,6 @@ def bremsscheibe():
     rillen = k("ShaderNodeTexWave", Scale=1.0, Distortion=2.0, Detail=2.0, **{"Detail Scale": 1.0}, _wave_type="RINGS", _rings_direction="Y")
     k.link(k.vek("SCALE", lok, None, 0.9), rillen.inputs["Vector"])
     rau = k.wert_mischen(0.28, k.bereich(rillen.outputs["Fac"], 0.0, 1.0, 0.12, 0.3), bahn)
-    k.link(rau, k.bsdf.inputs["Roughness"])
     anlauf = k.attribut("anlauf")
     farbe_anlauf = k.rampe(rel, [(0.82, (0.62, 0.62, 0.63)), (0.88, (0.55, 0.42, 0.25)), (0.94, (0.28, 0.25, 0.45)), (0.99, (0.45, 0.5, 0.6))])
     farbe = k.mischen((0.62, 0.62, 0.63), farbe_anlauf, k.mathe("MULTIPLY", anlauf, bahn))
@@ -332,10 +331,17 @@ def bremsscheibe():
     w = k.mathe("ARCTAN2", xyz.outputs["Z"], xyz.outputs["X"])
     flecken = k.bereich(k.mathe("MULTIPLY", k.mathe("SINE", k.mathe("MULTIPLY", w, 9.0)), k.mathe("SINE", k.mathe("MULTIPLY", w, 4.0))), -1.0, 1.0, 0.75, 1.0)
     h = k.mathe("MULTIPLY", k.mathe("MULTIPLY", hitze, flecken), bahn, klemmen=True)
-    glut = k.rampe(h, [(0.0, (0.0, 0.0, 0.0)), (0.3, (0.45, 0.012, 0.0)), (0.7, (1.0, 0.09, 0.0)), (1.0, (1.0, 0.32, 0.03))])
+    # Kirschrot bis Orange wie Stahl bei 550–750 °C; hell genug zum Leuchten, nicht so hell, dass AgX es ausbleicht
+    glut = k.rampe(h, [(0.0, (0.0, 0.0, 0.0)), (0.35, (0.4, 0.012, 0.0)), (0.75, (0.85, 0.05, 0.002)), (1.0, (1.0, 0.13, 0.008))])
     k.link(glut, k.bsdf.inputs["Emission Color"])
-    k.link(k.mathe("MULTIPLY", k.mathe("POWER", h, 2.5), 7.0), k.bsdf.inputs["Emission Strength"])
-    farbe = k.mischen(farbe, (0.08, 0.07, 0.07), k.mathe("MULTIPLY", h, 0.8))
+    k.link(k.mathe("MULTIPLY", k.mathe("POWER", h, 1.6), 1.7), k.bsdf.inputs["Emission Strength"])
+    # Heißer Stahl verliert den Glanz; dunkle, matte Oberfläche lässt die Glut satt rot statt rosa erscheinen
+    farbe = k.mischen(farbe, (0.03, 0.028, 0.028), k.mathe("MULTIPLY", h, 1.3, klemmen=True))
+    rau = k.wert_mischen(rau, 0.55, h)
+    # Innen (Arme bis zur Centerlock-Aufnahme) schwarz eloxiertes Aluminium wie bei zweiteiligen Scheiben
+    innen = k.bereich(rel, 0.795, 0.775)
+    farbe = k.mischen(farbe, (0.022, 0.022, 0.024), innen)
+    k.link(k.wert_mischen(rau, 0.3, innen), k.bsdf.inputs["Roughness"])
     k.link(farbe, k.bsdf.inputs["Base Color"])
     return m
 

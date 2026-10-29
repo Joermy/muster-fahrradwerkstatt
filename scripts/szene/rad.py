@@ -556,10 +556,23 @@ def gabel():
                       lambda t: (12, 20, 2.6), "Tauchrohr", um=28, seite=N))
     unten.append(zylinder("Steckachse", VORN + Vector((0, -78, 0)), VORN + Vector((0, 78, 0)), 7.5, "Alu_schwarz_glatt", 24))
     unten.append(rohr("Achshebel", [VORN + Vector((0, 80, 0)), VORN + Vector((-14, 84, 22)), VORN + Vector((-22, 85, 52))], lambda t: (5.5 - 1.5 * t, 3.5, 2.5), "Alu_schwarz_glatt", um=16))
-    pm = VORN + Vector((0, y + 8, 0)) + U * 78 - N * 26
-    pmo = kasten("PostMount", pm, (32, 14, 76), "Tauchrohr", fase=4)
-    drehen(pmo, -(math.pi / 2 - LENKWINKEL), "Y", pm)
-    unten.append(pmo)
+    # Post-Mount-Aufnahmen: zwei Augen unter den Sattelschrauben, mit einem Steg am Tauchrohr angegossen
+    ort, tangente, radial, r_mitte = sattel_lage(True)
+
+    def welt(p):
+        return ort + tangente * p.x + Vector((0, p.y, 0)) + radial * p.z
+
+    augen = []
+    for i in (1, -1):
+        a, b = welt(postmount_schraube(i, r_mitte, -16.0)), welt(postmount_schraube(i, r_mitte, -31.0))
+        unten.append(zylinder(f"PostMountAuge{i}", a, b, 8.5, "Tauchrohr", 28))
+        augen.append((a + b) / 2)
+
+    def auf_bein(z):
+        return VORN + Vector((0, y, 0)) + U * ((z - VORN.z) / U.z)
+
+    unten.append(rohr("PostMountSteg", [auf_bein(augen[0].z - 6), augen[0], augen[1], auf_bein(augen[1].z + 26)],
+                      lambda t: (6.5, 6.5, 2), "Tauchrohr", um=24))
     for s in (1, -1):
         unten.append(drehteil_achse("Entlueftung", [(0, 0), (5, 0), (5, 3), (0, 3)], "Alu_roh", VORN + Vector((0, y * s, 0)) + U * (standrohr_unten + 10) + N * 23, N, 16))
     t = verbinden("gabel_unten", unten)
@@ -863,29 +876,66 @@ def kettenglieder():
     return verbinden("glied_aussen", aussen), verbinden("glied_innen", innen)
 
 
-def bremssattel(vorn):
+def sattel_lage(vorn):
+    """Mitte des Bremssattels auf der Scheibe und seine Achsen: x entlang der Scheibe, z radial nach außen."""
     seite = "v" if vorn else "h"
     mitte = VORN if vorn else HINTEN
-    r_aussen = ROTOR[seite]
-    y_scheibe = ROTOR_Y[seite]
     winkel = math.radians(150) if vorn else math.radians(26)
-    r_mitte = r_aussen - 9
-    ort = mitte + Vector((r_mitte * math.cos(winkel), y_scheibe, r_mitte * math.sin(winkel)))
-    tangente = Vector((-math.sin(winkel), 0, math.cos(winkel)))
-    radial = Vector((math.cos(winkel), 0, math.sin(winkel)))
+    r_mitte = ROTOR[seite] - 9
+    ort = mitte + Vector((r_mitte * math.cos(winkel), ROTOR_Y[seite], r_mitte * math.sin(winkel)))
+    return ort, Vector((-math.sin(winkel), 0, math.cos(winkel))), Vector((math.cos(winkel), 0, math.sin(winkel))), r_mitte
+
+
+def postmount_schraube(i, r_mitte, tiefe):
+    """Punkt auf der Achse der Befestigungsschraube i (±1), lokal; tiefe ist der Abstand zur Scheibenmitte."""
+    phi = i * 30 / r_mitte
+    return Vector((0, 12, -r_mitte)) + Vector((math.sin(phi), 0, math.cos(phi))) * (r_mitte + tiefe)
+
+
+def bremssattel(vorn):
+    """Vierkolben-Sattel aus zwei Hälften: nierenförmig, folgt dem Scheibenbogen; Kolbenbuckel, Brücke, Schrauben."""
+    seite = "v" if vorn else "h"
+    ort, tangente, radial, r_mitte = sattel_lage(vorn)
+
+    def bogen(rho_innen, rho_aussen, laenge, n=4, schritte=72):
+        """Abgerundetes Rechteck in Polarkoordinaten um die Nabe, lokal (x entlang Tangente, z radial)."""
+        phi0 = laenge / 2 / r_mitte
+        rm, h = (rho_innen + rho_aussen) / 2, (rho_aussen - rho_innen) / 2
+        aus = []
+        for i in range(schritte):
+            t = TAU * i / schritte
+            c, s_ = math.cos(t), math.sin(t)
+            phi = phi0 * math.copysign(abs(c) ** (2 / n), c)
+            rho = rm + h * math.copysign(abs(s_) ** (2 / n), s_)
+            aus.append((rho * math.sin(phi), rho * math.cos(phi) - r_mitte))
+        return aus
+
+    # Platten liegen in (x, z); um X gedreht wird ihre Dicke zu -y
+    def scheibe_y(name, umriss_, y0, y1, fase):
+        return platte(name, umriss_, y1 - y0, "Bremssattel", fase=fase, matrix=Matrix.Translation((0, y1, 0)) @ Matrix.Rotation(math.pi / 2, 4, "X"))
+
     teile = []
     for s in (1, -1):
-        haelfte = kasten(f"Sattelhaelfte{s}", (0, 11.5 * s, 2), (84, 17, 34), "Bremssattel", fase=6, segmente=4)
-        teile.append(haelfte)
-        for i in (-1, 1):
-            k = drehteil(f"Kolbendeckel{s}{i}", [(0, 0), (9.5, 0), (9.5, 2.0 * s), (0, 2.0 * s)], "Alu_roh", 24)
-            verschieben(k, (i * 21, 20 * s, 0))
+        y0, y1 = (4.6, 22.0) if s > 0 else (-22.0, -4.6)
+        teile.append(scheibe_y(f"Sattelhaelfte{s}", bogen(r_mitte - 17, r_mitte + 20, 88), y0, y1, 3.2))
+        for i, r_k in ((-1, 10.5), (1, 11.5)):
+            phi = i * 21 / r_mitte
+            k = drehteil(f"Kolbenbuckel{s}{i}", [(0, 0), (r_k + 1.5, 0), (r_k + 1.5, 1.2 * s), (r_k, 2.8 * s), (r_k - 2.0, 3.0 * s), (0, 3.0 * s)], "Bremssattel", 32)
+            verschieben(k, (r_mitte * math.sin(phi), (y1 if s > 0 else y0) - 0.4 * s, r_mitte * math.cos(phi) - r_mitte))
             teile.append(k)
-    teile.append(kasten("Satteldach", (0, 0, 17), (76, 40, 10), "Bremssattel", fase=4))
-    teile.append(zylinder("Entlueftung", Vector((30, 10, 18)), Vector((32, 10, 28)), 3.4, "Alu_roh", 12))
-    teile.append(zylinder("Banjo", Vector((-36, 12, 14)), Vector((-36, 26, 14)), 6.5, "Alu_roh", 16))
+    teile.append(scheibe_y("Satteldach", bogen(r_mitte + 9, r_mitte + 22, 70), -21.0, 21.0, 3.0))
+    # Befestigung (Post Mount): zwei Schrauben radial von außen, mit Unterlegscheibe
     for i in (-1, 1):
-        teile.append(zylinder(f"Bolzen{i}", Vector((i * 28, 25, -6)), Vector((i * 28, -25, -6)), 4.0, "Stahl_dunkel", 16))
+        fuss, kopf, oben = (postmount_schraube(i, r_mitte, t) for t in (21.5, 22.9, 28.0))
+        teile.append(zylinder(f"Scheibe{i}", fuss, kopf, 7.5, "Alu_roh", 24))
+        teile.append(zylinder(f"Schraube{i}", kopf, oben, 5.6, "Stahl_dunkel", 6))
+    # Haltestift der Beläge über der Scheibe, Entlüftung und Leitungsanschluss
+    teile.append(zylinder("Stift", Vector((6, 23.5, 15)), Vector((6, -23.5, 15)), 1.9, "Alu_roh", 12))
+    teile.append(zylinder("Stiftkopf", Vector((6, 22.2, 15)), Vector((6, 25.2, 15)), 3.6, "Alu_roh", 6))
+    teile.append(zylinder("Entlueftung", Vector((30, 12, 20)), Vector((32, 12, 28)), 3.2, "Alu_roh", 6))
+    teile.append(zylinder("Entlueftkappe", Vector((32, 12, 27)), Vector((33, 12, 31)), 3.6, "Gummi", 12))
+    teile.append(zylinder("Banjo", Vector((-38, 12, 13)), Vector((-38, 27, 13)), 6.8, "Alu_roh", 20))
+    teile.append(zylinder("Banjoschraube", Vector((-38, 27, 13)), Vector((-38, 31, 13)), 5.4, "Alu_roh", 6))
     sattel_obj = verbinden(f"bremssattel_{seite}", teile)
     belaege = []
     for s in (1, -1):
@@ -1051,7 +1101,7 @@ def felgen_aufkleber(felge_obj, mitte, s, w0):
     n = 40
     for j in range(2):
         for i in range(n + 1):
-            w = w0 + spanne * (i / n - 0.5) * (-s)
+            w = w0 + spanne * (i / n - 0.5) * s
             r = ri + (ra - ri) * j
             y = (17.75 + 0.15) * s
             punkte.append(mitte + Vector((r * math.cos(w), y, r * math.sin(w))))

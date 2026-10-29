@@ -143,6 +143,7 @@ scripts/kodieren.py   WebP in zwei Größen, Vorschaubilder, Manifest
 - **1280 × 720 statt 1600 × 900** aus demselben Grund. Auf großen Bildschirmen wird leicht hochskaliert.
 - **Kein Korn in der Nachbearbeitung:** Korn vergrößert jede WebP-Datei deutlich; Vignette, minimaler Farbsaum und etwas Schärfe bleiben.
 - **Hochkant** zeigt die Seite das Bild in der oberen Hälfte, zentriert auf den Bildschwerpunkt jedes Bildes (`f` in `lagen.json`), statt eine eigene Hochkant-Folge zu rendern.
+- **Nachbesserung nach dem ersten Durchlauf** (Nahaufnahme Bremse): Felgenschrift war auf beiden Seiten spiegelverkehrt; der Bremssattel war ein Kasten mit silbernen Scheiben. Jetzt ein zweiteiliger Vierkolbensattel, der dem Scheibenbogen folgt, mit Kolbenbuckeln, Brücke, radialen Post-Mount-Schrauben und angegossenen Augen an der Gabel. Die Scheibe ist zweiteilig (Stahlring, schwarzer Aluminiumstern). Die Glut leuchtete lachsrosa, weil AgX sehr helles Rot zu Weiß hin entsättigt und der blanke Stahl die helle Werkstatt spiegelte: Glut jetzt schwächer und röter, heißer Stahl matt und dunkel. Weil Scheibe und Sattel in fast jedem Bild stehen, wurde die ganze Folge neu gerendert.
 
 ## 7. Risiken
 
