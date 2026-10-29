@@ -16,25 +16,37 @@ bleiben im Tab. Zugang zur Verwaltung unter `/verwaltung/`: Benutzer `inhaberin`
 
 ## Das Besondere
 
-Die Startseite zeigt ein E-Bike im Montageständer, vollständig als 3D-Modell gebaut (Blender
-per Skript, rund 255 000 Dreiecke): Rahmen mit Metallic-Lack unter Klarlack, Federgabel mit
-goldenen Standrohren, 12-fach-Antrieb, Scheibenbremsen, Mittelmotor und herausnehmbarer Akku.
-Die Kette ist physikalisch gelegt: 132 Glieder laufen über Kettenblatt, Ritzel und die beiden
-Schaltröllchen, der Käfig des Schaltwerks hält die Länge beim Schalten.
+Die Startseite ist eine fotorealistische Bildfolge statt Echtzeit-3D: ein vollgefedertes E-MTB
+von 2026 im Montageständer einer hellen Werkstatt, gebaut per Skript in Blender und Bild für
+Bild mit Cycles pfadverfolgt (globale Beleuchtung, Schärfentiefe, Bewegungsunschärfe). Beim
+Scrollen zeichnet die Seite das passende Bild in ein Canvas und blendet zwischen zwei Bildern
+über – wie bei den Produktseiten großer Hersteller.
+
+- **Rad (erfunden, „TRAIL·E 9“):** Carbon-Rahmen mit verschmolzenen Rohren und Akku im
+  Unterrohr, Horst-Link-Hinterbau mit Dämpfer, Federgabel mit Bronze-Standrohren, 29"-Reifen
+  mit Stollenprofil und geprägter Flanke, Vierkolbenbremsen, Schaltwerk ohne Schaltauge,
+  Leitungen durch den Steuersatz, Aufkleber, feiner Staub. Die Kette ist gelegt: 130 Glieder
+  über Kettenblatt, Ritzel und Röllchen, der Käfig hält die Länge beim Schalten.
+- **Werkstatt:** geschliffener Beton mit Fugen und Ölflecken, weiß gestrichener
+  Kalksandstein, Stahlfensterband mit Sonnenflecken, Werkbank mit Eichenplatte,
+  Werkzeugwand aus Birke-Multiplex, Regale, Laufräder an Haken, Montageständer mit Stahlteller.
 
 Beim Scrollen geht das Rad einmal durch die Werkstatt:
 
-1. **Diagnose** — ein Lichtvorhang tastet das Rad ab, Befunde erscheinen am Bauteil
-2. **Zerlegen** — Laufräder, Antrieb, Cockpit und Akku lösen sich nacheinander
+1. **Diagnose** — eine Laserlinie tastet das Rad ab, Befunde erscheinen am Bauteil
+2. **Zerlegen** — Laufräder, Antrieb, Cockpit, Dämpfer und Akku lösen sich
 3. **Antrieb** — Schaltvorgang durch alle zwölf Gänge, Übersetzung live
-4. **Bremse** — Prüfstand, die Scheibe glüht und läuft danach blau an
+4. **Bremse** — das Vorderrad dreht, die Scheibe glüht und läuft danach an
 5. **Laufrad** — Seitenschlag sichtbar, Speichenspannung als Farbkarte, dann zentriert
-6. **Akku** — der Akku kommt heraus, Energie fließt zum Motor
+6. **Akku** — der Akku gleitet aus dem Unterrohr
 7. **Übergabe** — Scheinwerfer an, abholbereit
 
-Bauteile lassen sich antippen; die Karte zeigt Preis und Leistung dazu. Ziehen dreht die
-Ansicht. Ein Wächter senkt Schärfe, Auflösung, Glühen und Schatten, wenn die Bildrate fällt.
-Ohne WebGL 2 steht ein Standbild, bei reduzierter Bewegung entfällt die Kamerafahrt.
+Es gibt keinen Ladebildschirm: Das erste Bild steht im HTML, die übrigen laden grob zu fein
+nach (jedes 24., 8., 4., 2., dann alle), Scrollen geht vom ersten Moment an. Bauteile lassen
+sich antippen; die Karte zeigt Preis und Leistung. Auf kleinen Bildschirmen und bei langsamer
+Verbindung lädt eine kleinere Folge, mit „Daten sparen“ oder reduzierter Bewegung nur ein
+Bild je Schritt. Ohne JavaScript bleibt das Standbild. Wie es dazu kam:
+[`planung/realismus-werkstatt.md`](planung/realismus-werkstatt.md).
 
 ## Funktionen
 
@@ -85,12 +97,15 @@ herunterladen (Art. 15 und 20 DSGVO) und löschen (Art. 17 DSGVO).
 | `app/daten/` | Leistungen und Preise, erfundene Vorführdaten |
 | `vorlagen/` | Seiten und Rahmen; `bin/bauen.php` macht daraus `public/` und `docs/` |
 | `public/` | Webroot für den eigenen Server, einziges PHP: `index.php` |
-| `public/assets/js/rad/` | 3D-Werkstatt (Three.js): Bühne, Licht, Materialien, Kette, Regie, Effekte |
+| `public/assets/js/werkstatt/` | Bildfolgen-Spieler und Zeitleiste der Startseite |
+| `public/assets/werkstatt/` | gerenderte Bildfolge (WebP, zwei Größen), Lage der Befunde und Markierungen |
 | `public/assets/js/verwaltung/` | Verwaltung als Einzelseite |
 | `vorlagen/vorfuehrung/` | nachgebaute Schnittstelle, landet nur in `docs/` |
 | `docs/` | Vorführfassung für GitHub Pages, nicht für Suchmaschinen |
 | `konfig/` | Sicherheitsköpfe, Beispiel für nginx |
-| `scripts/modell-bauen.py` | baut das E-Bike in Blender (`pip install bpy`) |
+| `scripts/szene/` | Blender-Szene per Skript: Rad, Werkstatt, Materialien, Kette, Zeitleiste |
+| `scripts/rendern.py`, `scripts/kodieren.py` | Bildfolge rendern und für das Web kodieren |
+| `planung/` | Recherche und Plan zur Startseite |
 | `tests/` | eigener Testlauf ohne Abhängigkeiten |
 
 ## Ansehen
@@ -139,16 +154,27 @@ phpstan analyse -c phpstan.neon         # Stufe 8
 php bin/pruefen.php                     # Auslieferung
 ```
 
-## Modell neu bauen
+## Bildfolge neu rendern
+
+Braucht Python 3.13 mit Blender als Modul (oder Blender 5.2 selbst) und etwas Geduld: auf vier
+CPU-Kernen etwa zwei Minuten je Bild, 193 Bilder.
 
 ```bash
-pip install bpy
-python scripts/modell-bauen.py
-npx gltfpack -i var/rad-roh.glb -o public/assets/modelle/rad.glb -cc -kn -km -ke -kv -vtf
+pip install bpy==5.2.3 pillow fonttools brotli
+python scripts/studio-test.py seite antrieb       # nur das Rad im Studio, zum Prüfen von Änderungen
+python scripts/rendern.py --probe                 # ein Bild je Kapitel nach var/szene/proben/
+python scripts/rendern.py                         # ganze Folge, fortsetzbar, grob zu fein
+python scripts/kodieren.py                        # WebP, Manifest, Standbilder nach public/ und docs/
 ```
+
+In der Blender-Oberfläche oder über Blender MCP laufen dieselben Skripte im Hintergrund:
+`blender -b -P scripts/rendern.py -- --probe`. Die Formeln der Zeitleiste stehen zweimal, in
+`scripts/szene/regie.py` und `public/assets/js/werkstatt/zeitleiste.js`; wer eine ändert,
+ändert beide.
 
 ## Lizenzen
 
-Three.js (MIT), qrcode-generator von Kazuhiko Arase (MIT), Schrift Barlow
-(SIL Open Font License). Die Lizenztexte liegen neben den Dateien in `public/assets/`.
-Das 3D-Modell, die Texturen und alle Texte sind für diese Seite entstanden.
+qrcode-generator von Kazuhiko Arase (MIT), Schrift Barlow (SIL Open Font License, auch in
+den gerenderten Aufklebern). Die Lizenztexte liegen neben den Dateien in `public/assets/`.
+Rad, Werkstatt, Materialien, die gerenderten Bilder und alle Texte sind für diese Seite
+entstanden; es stecken keine fremden Modelle, Texturen oder Fotos darin.

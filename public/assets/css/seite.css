@@ -68,17 +68,41 @@
   overflow: hidden;
   z-index: 1;
 }
-.werkstatt__leinwand { width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; touch-action: pan-y; }
-.werkstatt.ist-bereit .werkstatt__leinwand { opacity: 1; }
-.werkstatt__standbild { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.werkstatt__laden {
-  position: absolute; left: var(--rand); right: var(--rand); bottom: 2rem; max-width: 20rem;
-  font-size: var(--groesse-klein); color: var(--nacht-grau); transition: opacity 0.6s;
+.werkstatt__standbild, .werkstatt__leinwand { position: absolute; inset: 0; width: 100%; height: 100%; }
+.werkstatt__standbild { object-fit: cover; }
+.werkstatt__leinwand { touch-action: pan-y; }
+@media (max-aspect-ratio: 11/10) {
+  /* Hochkant zeigt der Spieler das Bild oben; das Standbild steht an derselben Stelle */
+  .werkstatt__standbild { top: max(48px, 6vh); height: 60%; }
 }
-.werkstatt__laden p { margin: 0.6rem 0 0; }
-.werkstatt__laden .balken { height: 2px; background: rgba(227, 236, 234, 0.18); overflow: hidden; }
-.werkstatt__laden .balken span { display: block; height: 100%; background: var(--signal); transform-origin: left; transform: scaleX(0.04); transition: transform 0.3s; }
-.werkstatt__laden.ist-fertig { opacity: 0; pointer-events: none; }
+
+.werkstatt__marken { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+/* Abdunkeln hinter dem Einstiegstext, damit weiße Schrift auf der hellen Werkstatt lesbar bleibt */
+.werkstatt__buehne::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.5s;
+  background:
+    linear-gradient(90deg, rgba(6, 9, 10, 0.78) 0%, rgba(6, 9, 10, 0.5) 30%, rgba(6, 9, 10, 0) 58%),
+    linear-gradient(0deg, rgba(6, 9, 10, 0.6) 0%, rgba(6, 9, 10, 0) 38%),
+    linear-gradient(180deg, rgba(6, 9, 10, 0.55) 0%, rgba(6, 9, 10, 0) 22%);
+}
+.werkstatt[data-kapitel="0"] .werkstatt__buehne::after, .werkstatt:not([data-kapitel]) .werkstatt__buehne::after { opacity: 1; }
+.werkstatt__teile p { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); }
+@media (max-aspect-ratio: 11/10) {
+  .werkstatt__buehne::after { background: linear-gradient(0deg, rgba(6, 9, 10, 0.92) 0%, rgba(6, 9, 10, 0.6) 40%, rgba(6, 9, 10, 0) 62%); }
+}
+.teilmarke {
+  position: absolute; left: -22px; top: -22px; width: 44px; height: 44px;
+  border: 0; padding: 0; background: none; cursor: pointer;
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.teilmarke::before, .teilmarke::after { content: ""; position: absolute; left: 50%; top: 50%; border-radius: 50%; translate: -50% -50%; }
+.teilmarke::before { width: 12px; height: 12px; background: #f2f6f5; box-shadow: 0 0 0 4px rgba(242, 246, 245, 0.25), 0 2px 10px rgba(0, 0, 0, 0.5); }
+.teilmarke::after { width: 30px; height: 30px; border: 1.5px solid rgba(242, 246, 245, 0.7); animation: teilmarke 2.4s ease-out infinite; }
+.teilmarke.ist-an { opacity: 1; pointer-events: auto; }
+.teilmarke.ist-markiert::before { background: var(--signal); box-shadow: 0 0 0 5px rgba(242, 194, 48, 0.35); }
+.teilmarke:hover::before { background: var(--signal); }
+@keyframes teilmarke { from { opacity: 0.9; scale: 0.5; } to { opacity: 0; scale: 1.25; } }
+@media (prefers-reduced-motion: reduce) { .teilmarke::after { animation: none; opacity: 0.6; } }
 
 .werkstatt__kapitel { position: relative; z-index: 2; margin-top: -100vh; margin-top: -100lvh; pointer-events: none; }
 .kapitel {

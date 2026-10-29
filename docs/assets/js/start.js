@@ -13,42 +13,18 @@ if (kopf && wurzel) {
   window.addEventListener("resize", pruefen);
 }
 
-function webgl2() {
-  try {
-    const c = document.createElement("canvas");
-    return !!c.getContext("webgl2");
-  } catch (e) {
-    return false;
-  }
-}
-
-function standbild() {
-  const bild = wurzel.querySelector("[data-standbild]");
-  bild.hidden = false;
-  wurzel.querySelector("[data-laden]").classList.add("ist-fertig");
-  wurzel.classList.add("ohne-3d");
-}
-
 async function starten() {
-  const sparen = navigator.connection && navigator.connection.saveData;
-  if (!wurzel || !webgl2() || sparen || new URLSearchParams(location.search).has("ohne3d")) {
-    standbild();
-    return;
-  }
+  if (!wurzel || new URLSearchParams(location.search).has("standbild")) return;
   try {
     const [{ werkstattStarten }, leistungen] = await Promise.all([
-      import("./rad/haupt.js"),
+      import("./werkstatt/spieler.js"),
       fetch(new URL("assets/daten/leistungen.json", BASIS)).then((r) => r.json()),
     ]);
-    await werkstattStarten({
-      wurzel,
-      basis: BASIS,
-      leistungen,
-    });
+    await werkstattStarten({ wurzel, basis: BASIS, leistungen });
     wurzel.querySelector("[data-teile]").hidden = false;
   } catch (e) {
+    // Ohne Bildfolge bleibt das Standbild aus dem HTML stehen
     console.error(e);
-    standbild();
   }
 }
 

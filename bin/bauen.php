@@ -174,7 +174,6 @@ foreach ($fassungen as $ziel => $f) {
         // Nachgebaute Schnittstelle nur in der Vorführfassung, nie im Webroot des echten Servers
         @mkdir($aus . '/assets/js/vorfuehrung', 0755, true);
         copy($wurzel . '/vorlagen/vorfuehrung/server.js', $aus . '/assets/js/vorfuehrung/server.js');
-        @unlink($aus . '/assets/modelle/rad-roh.glb');
         touch($aus . '/.nojekyll');
         file_put_contents($aus . '/robots.txt', "User-agent: *\nDisallow: /\n");
         // Vorführdaten für die Schnittstelle im Browser
