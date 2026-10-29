@@ -27,7 +27,6 @@ EINSTELLUNGEN = [
     {"name": "uebergabe", "auge": (3150, -1900, 330), "ziel": (600, 0, 470), "fov": 30, "drift": (-220, -120, 40), "blende": 5.6, "versatz": 0.14},
 ]
 
-HALTEN = 0.6
 SENSOR = 36.0
 
 
@@ -63,25 +62,11 @@ def einstellung(i, f):
 
 
 def kamera_bei(p):
-    """Kameralage für p, mit sanftem Bogen zwischen den Einstellungen (wie regie.js)."""
-    k = int(math.floor(p))
-    f = p - k
-    e1, auge, ziel = einstellung(k, f)
-    fov, blende, versatz = e1["fov"], e1["blende"], e1["versatz"]
-    if f > HALTEN and k < KAPITEL - 1:
-        u = sanft((f - HALTEN) / (1 - HALTEN))
-        e2, auge2, ziel2 = einstellung(k + 1, 0.0)
-        mitte = auge.lerp(auge2, 0.5)
-        hub = math.sin(u * math.pi) * min(900.0, (auge - auge2).length * 0.25)
-        neu = auge.lerp(auge2, u)
-        neu.z += hub * 0.35
-        neu += (mitte - ziel).normalized() * hub * 0.4
-        auge = neu
-        ziel = ziel.lerp(ziel2, u)
-        fov = lerp(fov, e2["fov"], u)
-        blende = lerp(blende, e2["blende"], u)
-        versatz = lerp(versatz, e2["versatz"], u)
-    return {"auge": auge, "ziel": ziel, "fov": fov, "blende": blende, "versatz": versatz, "kapitel": min(k, KAPITEL - 1), "name": e1["name"]}
+    """Kameralage für p. Jedes Kapitel ist eine ruhige Einstellung mit leichter Fahrt; zwischen den
+    Kapiteln blendet der Spieler über. Kameraflüge bräuchten ein Vielfaches an Bildern, um flüssig zu sein."""
+    k = min(int(math.floor(p)), KAPITEL - 1)
+    e, auge, ziel = einstellung(k, p - k)
+    return {"auge": auge, "ziel": ziel, "fov": e["fov"], "blende": e["blende"], "versatz": e["versatz"], "kapitel": k, "name": e["name"]}
 
 
 def kamera_setzen(cam, lage, breite, hoehe):

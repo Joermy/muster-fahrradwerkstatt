@@ -1,10 +1,22 @@
 // Werkstatt auf der Startseite: pfadverfolgte Bildfolge (Blender/Cycles), per Scrollen abgespielt.
 // Kein Ladebildschirm: Das erste Bild steht schon im HTML, die übrigen kommen grob-zu-fein nach
 // (jedes 24., 8., 4., 2., dann alle). Zwischen zwei geladenen Bildern wird überblendet.
+// Jedes Kapitel ist eine ruhige Einstellung; gegen Kapitelende blendet die nächste ein wie im Film.
+// Das Bild folgt dem Scrollen mit kurzer Trägheit, damit Mausrad-Sprünge nicht ruckeln.
 
 import { werteBei, KAPITEL } from "./zeitleiste.js";
 
 const klemm = (x, a, b) => Math.max(a, Math.min(b, x));
+const glatt = (a, b, x) => {
+  const t = klemm((x - a) / (b - a), 0, 1);
+  return t * t * (3 - 2 * t);
+};
+// Ab diesem Anteil eines Kapitels blendet die nächste Einstellung ein
+const WECHSEL = 0.86;
+// Leichter Schub beim Wechsel: die alte Einstellung wächst beim Ausblenden, die neue setzt sich
+const SCHUB = 0.05;
+// Zeitkonstante der Trägheit in Sekunden
+const TRAEGHEIT = 0.11;
 
 function satzWaehlen(manifest) {
   const verbindung = navigator.connection || {};
@@ -176,14 +188,25 @@ export async function werkstattStarten({ wurzel, basis, leistungen }) {
     const r = kapitelEbene.getBoundingClientRect();
     return klemm(-r.top / (window.innerHeight || 1), 0, KAPITEL - 0.001);
   }
-  let p = fortschritt();
+  // ziel folgt dem Scrollen direkt, p (das gezeigte Bild) läuft mit kurzer Trägheit hinterher
+  let ziel = fortschritt();
+  let p = ziel;
+  let zuletzt = 0;
   window.addEventListener("scroll", () => {
-    const neu = fortschritt();
-    if (neu !== p) {
-      p = neu;
-      schmutzig = true;
-    }
+    ziel = fortschritt();
+    schmutzig = true;
   }, { passive: true });
+  function nachziehen(jetzt) {
+    const dt = zuletzt ? Math.min(0.1, (jetzt - zuletzt) / 1000) : 0;
+    zuletzt = jetzt;
+    if (p === ziel) return;
+    if (sparsam() || Math.abs(ziel - p) > 1.5) p = ziel;
+    else {
+      p += (ziel - p) * (1 - Math.exp(-dt / TRAEGHEIT));
+      if (Math.abs(ziel - p) < 0.0004) p = ziel;
+    }
+    schmutzig = true;
+  }
   window.addEventListener("resize", () => { schmutzig = true; });
   ruhig.addEventListener?.("change", () => { schmutzig = true; });
 
@@ -193,21 +216,27 @@ export async function werkstattStarten({ wurzel, basis, leistungen }) {
     if (sichtbar) schmutzig = true;
   }, { rootMargin: "120px" }).observe(wurzel);
 
-  // Nächstes geladenes Bild unter- und oberhalb von x suchen
-  function nachbarn(x) {
+  // Nächstes geladenes Bild unter- und oberhalb von x suchen, nur innerhalb von Kapitel k
+  function nachbarn(x, k) {
     if (sparsam()) {
-      const k = Math.min(Math.floor(x / jeKapitel), KAPITEL - 1);
       const i = manifest.schluessel[k];
       return bilder[i] ? [i, i, 0] : [0, 0, 0];
     }
-    const i0 = Math.floor(x);
-    let a = i0;
-    while (a > 0 && !bilder[a]) a--;
-    let b = Math.min(n - 1, i0 + 1);
-    while (b < n - 1 && !bilder[b]) b++;
-    if (!bilder[b]) b = a;
-    const t = b > a ? klemm((x - a) / (b - a), 0, 1) : 0;
-    return [a, b, t];
+    const lo = k * jeKapitel;
+    const hi = Math.min(n - 1, k === KAPITEL - 1 ? n - 1 : lo + jeKapitel - 1);
+    const xk = klemm(x, lo, hi);
+    let a = Math.floor(xk);
+    while (a > lo && !bilder[a]) a--;
+    let b = Math.min(hi, Math.floor(xk) + 1);
+    while (b < hi && !bilder[b]) b++;
+    if (!bilder[a]) a = b;
+    if (!bilder[b] || b < a) b = a;
+    if (!bilder[a]) return [0, 0, 0];
+    const lucke = b - a;
+    const roh = lucke > 0 ? klemm((xk - a) / lucke, 0, 1) : 0;
+    // Benachbarte Bilder linear überblenden; über Lücken (Folge lädt noch) kurz in der Mitte, sonst Doppelbild
+    const h = 0.5 / Math.sqrt(Math.max(1, lucke));
+    return [a, b, lucke <= 1 ? roh : glatt(0.5 - h, 0.5 + h, roh)];
   }
 
   const holen = (lage, wahl) => {
@@ -227,27 +256,48 @@ export async function werkstattStarten({ wurzel, basis, leistungen }) {
   let aktivesKapitel = -1;
   let ersterStrich = true;
 
-  function zeichnen() {
+  function zeichnen(jetzt) {
     requestAnimationFrame(zeichnen);
+    nachziehen(jetzt);
     if (groesse()) schmutzig = true;
     if (!schmutzig || !sichtbar || document.hidden) return;
     schmutzig = false;
     const x = p * jeKapitel;
-    const [a, b, t] = nachbarn(x);
+    const k = Math.min(Math.floor(p), KAPITEL - 1);
+    const [a, b, t] = nachbarn(x, k);
     if (!bilder[a]) return;
-    const fokus = lageMischen(a, b, t, (l) => l.f) || [0.5, 0.5];
-    const m = abbildung(fokus[0]);
+    // Kapitelwechsel: die erste Einstellung des nächsten Kapitels blendet über die laufende
+    const w = k < KAPITEL - 1 && !sparsam() ? glatt(WECHSEL, 1, p - k) : 0;
+    const [c, d, u] = w > 0 ? nachbarn((k + 1) * jeKapitel, k + 1) : [a, a, 0];
+    const naechstes = w > 0.004 && bilder[c];
+    const fokusA = lageMischen(a, b, t, (l) => l.f) || [0.5, 0.5];
+    const fokusB = naechstes ? lageMischen(c, d, u, (l) => l.f) || fokusA : fokusA;
+    const m = abbildung(fokusA[0] + (fokusB[0] - fokusA[0]) * w);
     ctx.setTransform(dichte, 0, 0, dichte, 0, 0);
     ctx.clearRect(0, 0, breite, hoehe);
     const fb = satz.breite * m.s;
     const fh = satz.hoehe * m.s;
-    ctx.globalAlpha = 1;
-    ctx.drawImage(bilder[a], m.ox, m.oy, fb, fh);
-    if (b !== a && t > 0.01 && bilder[b]) {
-      ctx.globalAlpha = t;
-      ctx.drawImage(bilder[b], m.ox, m.oy, fb, fh);
-      ctx.globalAlpha = 1;
+    const mx = m.ox + fb / 2;
+    const my = m.oy + fh / 2;
+    const malen = (i, alpha, zoom = 1) => {
+      if (alpha <= 0.004 || !bilder[i]) return;
+      ctx.globalAlpha = Math.min(1, alpha);
+      ctx.drawImage(bilder[i], mx - (fb * zoom) / 2, my - (fh * zoom) / 2, fb * zoom, fh * zoom);
+    };
+    const zoomA = 1 + SCHUB * w;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(m.ox, m.oy, fb, fh);
+    ctx.clip();
+    malen(a, 1, zoomA);
+    if (b !== a) malen(b, t, zoomA);
+    if (naechstes) {
+      const zoomB = 1 + SCHUB * 0.8 * (1 - w);
+      malen(c, w, zoomB);
+      if (d !== c) malen(d, w * u, zoomB);
     }
+    ctx.restore();
+    ctx.globalAlpha = 1;
     if (m.hochkant) {
       const unten = m.oy + fh;
       const verlauf = ctx.createLinearGradient(0, unten - 90, 0, unten);
