@@ -128,14 +128,21 @@ scripts/kodieren.py   WebP in zwei Größen, Vorschaubilder, Manifest
 ## 6. Ablauf
 
 1. ✅ Recherche, dieses Dokument
-2. Rad neu: Geometrie 2026, Carbon-Rahmen, integrierter Akku, Cockpit, Reifenprofil, Dekor, neuer Montageständer
-3. Werkstatt: Raum aus dem Prototyp verfeinern, Kleinteile, Gebrauchsspuren
-4. Materialien: Lack, Eloxal, Gummi mit Prägung, Staub, Kratzer
-5. Licht, Kamera, Bildlook; Probebilder aller acht Einstellungen
-6. Zeitleiste: Zerlegen, Kette, Bremse, Laufrad, Akku, Licht
-7. Ganze Folge rendern (mehrere Stunden, im Hintergrund)
-8. Seite umbauen: Canvas-Spieler, Markierungen, Lademodus entfernen, Three.js entfernen
-9. Prüfen (Desktop, Handy, ohne JS, reduzierte Bewegung), README, Rechtscheck der neuen Dateien
+2. ✅ Rad neu: Geometrie 2026, Carbon-Rahmen, integrierter Akku, Cockpit, Reifenprofil, Dekor, neuer Montageständer (`scripts/szene/rad.py`)
+3. ✅ Werkstatt: Raum, Kleinteile, Außenansicht, Lichtportal im Fenster (`scripts/szene/werkstatt.py`)
+4. ✅ Materialien: Lack, Eloxal, Gummi mit Prägung, Staub, Glut, Speichenspannung (`scripts/szene/materialien.py`)
+5. ✅ Licht, Kamera, Bildlook; Probebilder aller acht Einstellungen (`scripts/rendern.py --probe`)
+6. ✅ Zeitleiste: Zerlegen, Kette, Bremse mit Bewegungsunschärfe, Laufrad, Akku, Licht (`scripts/szene/regie.py`)
+7. Ganze Folge rendern (rund 2 Minuten je Bild auf vier Kernen, 193 Bilder)
+8. ✅ Seite umbauen: Canvas-Spieler, Markierungen, Lademodus entfernt, Three.js entfernt
+9. Prüfen (Desktop, Handy, ohne JS, reduzierte Bewegung), README
+
+### Abweichungen vom Plan
+
+- **24 statt 32 Bilder je Kapitel**, weil ein Bild rund zwei Minuten braucht; der Spieler blendet zwischen Nachbarbildern über.
+- **1280 × 720 statt 1600 × 900** aus demselben Grund. Auf großen Bildschirmen wird leicht hochskaliert.
+- **Kein Korn in der Nachbearbeitung:** Korn vergrößert jede WebP-Datei deutlich; Vignette, minimaler Farbsaum und etwas Schärfe bleiben.
+- **Hochkant** zeigt die Seite das Bild in der oberen Hälfte, zentriert auf den Bildschwerpunkt jedes Bildes (`f` in `lagen.json`), statt eine eigene Hochkant-Folge zu rendern.
 
 ## 7. Risiken
 
