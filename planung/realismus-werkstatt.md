@@ -76,7 +76,7 @@ Vorbilder: helle, aufgeräumte Werkstätten mit Beton, Holz, Aluminium und Stahl
 ### 4.3 Licht und Kamera
 
 - **Licht:** Tageslicht durchs Fensterband (Sonne + Himmel), drei LED-Lichtbänder an der Decke, Pendelleuchte über dem Montageplatz als Hauptlicht, warme Leuchte über der Werkbank.
-- **Kamera:** die acht Einstellungen der bisherigen Regie (Ankunft, Diagnose, Zerlegen, Antrieb, Bremse, Laufrad, Akku, Übergabe) bleiben als Drehbuch, werden aber mit echten Brennweiten (35–85 mm), Blende f/2,8–f/5,6 und Fokus auf das jeweilige Bauteil umgesetzt.
+- **Kamera:** die acht Einstellungen der bisherigen Regie (Ankunft, Diagnose, Zerlegen, Antrieb, Bremse, Laufrad, Akku, Übergabe) bleiben als Drehbuch, werden aber mit echten Brennweiten (35–85 mm), Blende f/2,8–f/5,6 und Fokus auf das jeweilige Bauteil umgesetzt. Zwischen den Einstellungen wird überblendet, nicht geflogen (siehe Abweichungen).
 - **Bildlook:** AgX mit Kontrast, leichte Vignette, minimale chromatische Aberration, feines Korn.
 
 ### 4.4 Die Geschichte bleibt
@@ -144,6 +144,7 @@ scripts/kodieren.py   WebP in zwei Größen, Vorschaubilder, Manifest
 - **Kein Korn in der Nachbearbeitung:** Korn vergrößert jede WebP-Datei deutlich; Vignette, minimaler Farbsaum und etwas Schärfe bleiben.
 - **Hochkant** zeigt die Seite das Bild in der oberen Hälfte, zentriert auf den Bildschwerpunkt jedes Bildes (`f` in `lagen.json`), statt eine eigene Hochkant-Folge zu rendern.
 - **Nachbesserung nach dem ersten Durchlauf** (Nahaufnahme Bremse): Felgenschrift war auf beiden Seiten spiegelverkehrt; der Bremssattel war ein Kasten mit silbernen Scheiben. Jetzt ein zweiteiliger Vierkolbensattel, der dem Scheibenbogen folgt, mit Kolbenbuckeln, Brücke, radialen Post-Mount-Schrauben und angegossenen Augen an der Gabel. Die Scheibe ist zweiteilig (Stahlring, schwarzer Aluminiumstern). Die Glut leuchtete lachsrosa, weil AgX sehr helles Rot zu Weiß hin entsättigt und der blanke Stahl die helle Werkstatt spiegelte: Glut jetzt schwächer und röter, heißer Stahl matt und dunkel. Weil Scheibe und Sattel in fast jedem Bild stehen, wurde die ganze Folge neu gerendert.
+- **Keine Kameraflüge zwischen den Kapiteln.** Online ruckelte die Folge: Ein Flug von der Totalen zur Nahaufnahme hatte bei 24 Bildern je Kapitel nur rund zehn Bilder, das Überblenden zwischen so verschiedenen Bildern ergibt Doppelbilder. Flüssige Flüge bräuchten etwa das Vierfache an Bildern (über 20 Stunden Rendern auf vier Kernen). Stattdessen ist jedes Kapitel eine ruhige Einstellung mit leichter Fahrt über das ganze Kapitel; in den letzten 14 % blendet die nächste Einstellung mit leichtem Schub ein wie ein Filmschnitt. Dazu folgt das Bild dem Scrollen mit 0,11 s Trägheit, sodass Mausrad-Raster nicht mehr springen. Die Flugbilder wurden durch ruhige ersetzt, die Markierungen neu projiziert.
 
 ## 7. Risiken
 
