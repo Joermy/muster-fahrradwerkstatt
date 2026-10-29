@@ -40,8 +40,10 @@ export async function werkstattStarten({ wurzel, basis, leistungen }) {
   // ---------------------------------------------------------------- Laden, grob zu fein
   const reihenfolge = [];
   const vorgemerkt = new Set();
+  // Eine unvollständige Folge nennt ihre fertigen Bilder; die übrigen gar nicht erst anfragen
+  const gibt = manifest.vorhanden ? new Set(manifest.vorhanden) : null;
   const merken = (i) => {
-    if (i >= 0 && i < n && !vorgemerkt.has(i)) {
+    if (i >= 0 && i < n && !vorgemerkt.has(i) && (!gibt || gibt.has(i))) {
       vorgemerkt.add(i);
       reihenfolge.push(i);
     }

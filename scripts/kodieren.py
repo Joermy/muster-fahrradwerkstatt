@@ -61,11 +61,17 @@ def main():
     n = regie.KAPITEL * regie.BILDER_JE_KAPITEL + 1
     for name in SAETZE:
         os.makedirs(os.path.join(ZIEL, name), exist_ok=True)
-    fertig = 0
+    fertig, vorhanden = 0, []
     for i in range(n):
         quelle = os.path.join(QUELLE, f"bild_{i:04d}.png")
         if not os.path.exists(quelle):
+            # Bild aus einem älteren Renderlauf passt nicht mehr zur Szene
+            for name in SAETZE:
+                alt = os.path.join(ZIEL, name, f"bild_{i:04d}.webp")
+                if os.path.exists(alt):
+                    os.remove(alt)
             continue
+        vorhanden.append(i)
         ziele = {name: os.path.join(ZIEL, name, f"bild_{i:04d}.webp") for name in SAETZE}
         if all(os.path.exists(z) and os.path.getmtime(z) > os.path.getmtime(quelle) for z in ziele.values()):
             fertig += 1
@@ -77,13 +83,19 @@ def main():
         fertig += 1
     print(f"{fertig} von {n} Bildern kodiert")
 
-    schluessel = [k * regie.BILDER_JE_KAPITEL + round(0.3 * regie.BILDER_JE_KAPITEL) for k in range(regie.KAPITEL)]
+    # Schlüsselbild je Kapitel (für reduzierte Bewegung): 30 % ins Kapitel, sonst das nächste fertige Bild
+    schluessel = []
+    for k in range(regie.KAPITEL):
+        ideal = k * regie.BILDER_JE_KAPITEL + round(0.3 * regie.BILDER_JE_KAPITEL)
+        schluessel.append(min(vorhanden, key=lambda i: abs(i - ideal)) if vorhanden else ideal)
     manifest = {
         "bilder": n,
         "je_kapitel": regie.BILDER_JE_KAPITEL,
         "kapitel": regie.KAPITEL,
         "saetze": {name: {"breite": b, "hoehe": h, "muster": f"{name}/bild_{{i}}.webp"} for name, (b, h, _) in SAETZE.items()},
         "schluessel": schluessel,
+        # Nur solange die Folge unvollständig ist (Renderlauf noch nicht fertig): welche Bilder es gibt
+        **({"vorhanden": vorhanden} if len(vorhanden) < n else {}),
         "befunde": [{"titel": d["titel"], "wert": d["wert"], "stand": d["stand"], "x": d["anker"][0]} for d in regie.BEFUNDE],
         "teile": {name: [kennung, bezeichnung] for name, (_, kennung, bezeichnung) in regie.MARKIERUNGEN.items()},
     }
@@ -113,7 +125,8 @@ def main():
     # Vorführfassung auf GitHub Pages bekommt dieselben Dateien
     docs = os.path.join(WURZEL, "docs", "assets")
     if os.path.isdir(docs):
-        shutil.copytree(ZIEL, os.path.join(docs, "werkstatt"), dirs_exist_ok=True)
+        shutil.rmtree(os.path.join(docs, "werkstatt"), ignore_errors=True)
+        shutil.copytree(ZIEL, os.path.join(docs, "werkstatt"))
         for datei in ("werkstatt-1280.webp", "werkstatt-854.webp", "vorschau-1200.jpg"):
             if os.path.exists(os.path.join(BILDER, datei)):
                 shutil.copy2(os.path.join(BILDER, datei), os.path.join(docs, "bilder", datei))
